@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         mWebView.loadUrl("file:///android_asset/pages/index.html");
         initView();
         //hidestatusbar();
+
+        //分支合并测试
     }
     /**
      * 定义底栏点击事件
