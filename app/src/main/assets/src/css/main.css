@@ -216,3 +216,45 @@ body{
 .recom-book img{
     width: 80px;
 }
+
+
+/* 分类搜索结果 */
+.search-book-result{
+    margin: 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+
+}
+.result-order{
+    height: 18px;
+}
+.result-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.result-new,
+.result-hot{   
+    width: 35px;
+    height: 18px;
+    text-align: center;
+    margin: 0 0 0 5px;
+}
+.btn-radius{
+    border: 1px solid #ED4242;
+    border-radius: 30px;
+    color:#ED4242;
+}
+
+#search-book-list{
+    margin: 0 5px;
+}
+.search-book-result-line{
+    height: 1px;
+    width: calc(100% - 10px);
+    margin: 0 auto;
+    background: #ECECEC;
+    margin-bottom: 5px;
+}

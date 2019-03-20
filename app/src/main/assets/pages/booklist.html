@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>booklist</title>
+
+    <link rel="stylesheet" href="../src/css/main.css">
+    <link rel="stylesheet" href="../src/css/home.css">
+    <script src="../src/modules/jquery/jquery-3.3.1.min.js"></script>
+
+</head>
+<body>
+
+    <div class="search-book-result">
+       <div class="result-order">排序</div> 
+       <div class="result-wrapper">
+            <div class="result-new btn-radius">最新</div>
+            <div class="result-hot">最热</div>
+       </div>
+       
+    </div>
+    <div class="search-book-result-line"></div>
+
+    <div id="search-book-list">
+        <book-one 
+        v-for="(bookone,index) in booklist" 
+        :key="bookone.id" 
+        v-bind:book="bookone"
+        ></book-one>     
+    </div>
+
+    
+    <script src="../src/modules/vue/vue.min.js"></script>
+
+    <script src="../src/js/bookListComponent.js"></script>
+    <script src="../src/js/booklist.js"></script>
+    
+</body>
+</html>

@@ -16,14 +16,14 @@ $(document).ready(function(){
         var sendAddr = $(this).attr('href')
         // $('.book-title').text('repsonseData from java, data =!!!!!!!!!!!!!!!!')
         event.preventDefault()
-        window.WebViewJavascriptBridge.callHandler(
-            "javaWebViewHandler",
-            sendAddr,
-            function(responseData) {
-                $('.book-title').text('repsonseData from java, data =!!!!!!!!!!!!!!!!')
+        // window.WebViewJavascriptBridge.callHandler(
+        //     "javaWebViewHandler",
+        //     sendAddr,
+        //     function(responseData) {
+        //         $('.book-title').text('repsonseData from java, data =!!!!!!!!!!!!!!!!')
                 console.log("repsonseData from java, data =!!!!!!!!!!!!!!!! ")
-            }
-        );
+        //     }
+        // );
     })
     
 
@@ -64,6 +64,34 @@ $(document).ready(function(){
                 responseCallback(responseData);
             }
         });
+    })
+
+
+    // 图书列表渲染
+    var bookListHome = new Vue({
+        el:'#home-book-list',
+        data:{
+            booklist:""
+        },
+        created: function () {
+            console.log('created 钩子执行...');
+            //异步请求渲染数据
+            var url = "../src/js/test/booklist.json"
+            axios.get(url, {
+                name: ""
+            }).then(function (res) {
+                var resData = res.data;
+                // if (resData.status == "0") { //0表示成功，1表示失败    
+                //     console.log(resData.message);
+                // } else {
+                //     console.log(resData.message);
+                // }
+                this.booklist = resData
+                bookListHome.$data.booklist = resData
+            });
+        },
+
+        
     })
 
 })
