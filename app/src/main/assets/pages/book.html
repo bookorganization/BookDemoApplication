@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../src/css/main.css">
     <link rel="stylesheet" href="../src/css/book.css">
     <link rel="stylesheet" href="../src/modules/dplayer/DPlayer.min.css">
+    <!-- jquery -->
+    <script src="../src/modules/jquery/jquery-3.3.1.min.js"></script>
 </head>
 <body>
     <!-- <a href="music.html" id="listen">听音乐</a>
@@ -23,32 +25,32 @@
             <div class="book-tool bt3"><img src="../src/img/collection.png" alt="">收藏</div>
             <div class="book-tool bt4"><img src="../src/img/share.png" alt="">分享</div>
         </div>
-    
+
         <div class="book-tab">
             <div class="book-tab-card" :class="{active:bookTabShow==1}" @click="tabShow(1)">详情</div>
             <div class="book-tab-card" :class="{active:bookTabShow==2}" @click="tabShow(2)">评论</div>
-            <div class="book-tab-card" :class="{active:bookTabShow==3}" @click="tabShow(3)">挑战</div>        
+            <div class="book-tab-card" :class="{active:bookTabShow==3}" @click="tabShow(3)">挑战</div>
         </div>
         <div class="book-tab-line"></div>
-    
-    
+
+
         <!-- 详情 -->
         <div class="book-tab-intro" :class="{active:bookTabShow==1}">
             <div class="book-info">
                 <div class="recom-bar">
                     <div class="recom-bar-inner">
-                        <div class="rbi-title">书籍介绍</div>  
+                        <div class="rbi-title">书籍介绍</div>
                     </div>
                 </div>
                 <div class="book-info-detail">
                     《夏洛的网》以儿童的语言讲述关于爱、友谊、生死的故事！《夏洛的网》是一部描写关于友情的童话，在朱克曼家的谷仓里，小猪威尔伯和蜘蛛夏洛建立了最真挚的友谊。《夏洛的网》还是一部探究关于生命的童话，“……生命到底是什么啊？我们出生，我们活上一阵子，我们死去。一只蜘蛛，一生只忙着捕捉和吃苍蝇是毫无意义的，通过帮助你，也许可以提升一点我生命的价值。”童趣盎然，是《夏洛的网》重要的叙事风格。细腻情感化，则传递了本书的语言风格。
                 </div>
             </div>
-        
+
             <div class="teacher-intro">
                 <div class="recom-bar">
                     <div class="recom-bar-inner">
-                        <div class="rbi-title">讲师介绍</div>  
+                        <div class="rbi-title">讲师介绍</div>
                     </div>
                 </div>
                 <div class="teacher-intro-detail normal-detail clearfix">
@@ -61,32 +63,32 @@
                                 以儿童的语言讲述关于爱、友谊、生死的故事！是一部描写关于友情的童话，在朱谷仓里，小尔…
                             <a href="mor.html">更多》</a>
                         </div>
-                    </div>                
+                    </div>
                 </div>
             </div>
-        
+
             <div class="book-related">
                 <div class="recom-bar">
                     <div class="recom-bar-inner">
-                        <div class="rbi-title">图书推荐</div>  
+                        <div class="rbi-title">图书推荐</div>
                     </div>
                 </div>
                 <div class="book-related-detail normal-detail clearfix">
                     <div class="brd-img normal-left normal-img">
                         <img src="../src/img/b1.png" alt="">
-                    </div>   
+                    </div>
                     <div class="normal-right">
                         <div class="br-name normal-title">夏洛的网</div>
                         <div class="brd-text normal-font">
                                 一部描写关于友情的童话，在朱克曼家的谷仓里，小猪威尔伯和蜘蛛夏洛建立了最真挚的友谊。《夏洛的网》还是一部探究关于生命的童话
                         </div>
-                   </div>             
+                   </div>
                 </div>
-               
+
             </div>
         </div>
-    
-    
+
+
         <!-- 评论 -->
         <div class="book-tab-comment" :class="{active:bookTabShow==2}">
             <div class="comment-me">
@@ -97,7 +99,7 @@
                     <input type="text">
                 </div>
             </div>
-    
+
             <!-- 评论列表 -->
             <div class="comment-list">
                 <div class="comment-one">
@@ -110,7 +112,7 @@
                                     3年纪
                                 </div>
                             </div>
-                        </div>  
+                        </div>
                         <div class="comment-user-time">
                             今天09:35
                         </div>
@@ -121,12 +123,12 @@
                 </div>
             </div>
         </div>
-    
+
         <!-- 挑战 -->
         <div class="challenge" :class="{active:bookTabShow==3}">
             <div class="start-exam">
                 <div>开始</div>
-                <div>做题</div>     
+                <div>做题</div>
             </div>
         </div>
     </div>
@@ -134,9 +136,47 @@
 
 
 
-   
+
     <script src="../src/modules/dplayer/DPlayer.min.js"></script>
     <script src="../src/modules/vue/vue.min.js"></script>
     <script src="../src/js/book.js"></script>
 </body>
+<script>
+
+        function connectWebViewJavascriptBridge(callback) {
+            if (window.WebViewJavascriptBridge) {
+                callback(WebViewJavascriptBridge)
+            } else {
+                document.addEventListener(
+                    'WebViewJavascriptBridgeReady'
+                    , function() {
+                        callback(WebViewJavascriptBridge)
+                    },
+                    false
+                );
+            }
+        }
+
+        connectWebViewJavascriptBridge(function(bridge) {
+            bridge.init(function(message, responseCallback) {
+                console.log('JS got a message', message);
+                var data = {
+                    'Javascript Responds': '测试中文!'
+                };
+
+                if (responseCallback) {
+                    console.log('JS responding with', data);
+                    responseCallback(message);
+                }
+            });
+
+            <!--bridge.registerHandler("submitFromBook", function(data, responseCallback) {-->
+                <!--document.getElementById("show").innerHTML = ("data from Java: = " + data);-->
+                <!--if (responseCallback) {-->
+                    <!--var responseData = "Javascript Says Right back aka!";-->
+                    <!--responseCallback(responseData);-->
+                <!--}-->
+            <!--});-->
+        })
+    </script>
 </html>

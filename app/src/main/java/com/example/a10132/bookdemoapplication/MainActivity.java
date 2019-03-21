@@ -64,64 +64,65 @@ public class MainActivity extends AppCompatActivity{
         mWebView.setDefaultHandler(new DefaultHandler());
         webSettings.setJavaScriptEnabled(true);//支持js脚本
         webSettings.setDomStorageEnabled(true);////设置DOM Storage缓存，不然插件出不来
-       // mWebView.setWebViewClient(new WebViewClient());//这句话加上就不能传数据了！
         mWebView.setWebChromeClient(new WebChromeClient(){
-            @SuppressWarnings("unused")
-            public void openFileChooser(ValueCallback<Uri> uploadMsg, String AcceptType, String capture) {
-                this.openFileChooser(uploadMsg);
-            }
-
-            @SuppressWarnings("unused")
-            public void openFileChooser(ValueCallback<Uri> uploadMsg, String AcceptType) {
-                this.openFileChooser(uploadMsg);
-            }
-
-            public void openFileChooser(ValueCallback<Uri> uploadMsg) {
-                mUploadMessage = uploadMsg;
-                pickFile();
-            }
-            @Override
-            public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
-                mUploadMessageArray = filePathCallback;
-                pickFile();
-                return true;
-            }
+//            @SuppressWarnings("unused")
+//            public void openFileChooser(ValueCallback<Uri> uploadMsg, String AcceptType, String capture) {
+//                this.openFileChooser(uploadMsg);
+//            }
+//
+//            @SuppressWarnings("unused")
+//            public void openFileChooser(ValueCallback<Uri> uploadMsg, String AcceptType) {
+//                this.openFileChooser(uploadMsg);
+//            }
+//
+//            public void openFileChooser(ValueCallback<Uri> uploadMsg) {
+//                mUploadMessage = uploadMsg;
+//                pickFile();
+//            }
+//            @Override
+//            public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
+//                mUploadMessageArray = filePathCallback;
+//                pickFile();
+//                return true;
+//            }
         });//用chrome浏览器
         mWebView.loadUrl("file:///android_asset/pages/index.html");
         mWebView.registerHandler("submitFromWeb", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
                 Log.i(TAG, "handler = submitFromWeb, data from web = " + data);
-                Toast.makeText(MainActivity.this, "hahaha", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(MainActivity.this, BookActivity.class);
+                intent.putExtra("id",data);
+                startActivity(intent);
                 function.onCallBack("submitFromWeb exe, response data 中文 from Java");
             }
 
         });
-        mWebView.setDefaultHandler(new BridgeHandler() {
-            @Override
-            public void handler(String data, CallBackFunction function) {
-                String msg = "默认接收到js的数据：" + data;
+//        mWebView.setDefaultHandler(new BridgeHandler() {
+//            @Override
+//            public void handler(String data, CallBackFunction function) {
+//                String msg = "默认接收到js的数据：" + data;
+//
+//
+//                function.onCallBack("java默认接收完毕，并回传数据给js"); //回传数据给js
+//            }
+//        });
+//        User user = new User();
+//        Location location = new Location();
+//        location.address = "SDU";
+//        user.location = location;
+//        user.name = "大头鬼";
 
-
-                function.onCallBack("java默认接收完毕，并回传数据给js"); //回传数据给js
-            }
-        });
-        User user = new User();
-        Location location = new Location();
-        location.address = "SDU";
-        user.location = location;
-        user.name = "大头鬼";
-
-        mWebView.callHandler("functionInJs", new Gson().toJson(user), new CallBackFunction() {
-            @Override
-            public void onCallBack(String data) {
-                Log.e("ddd",data);
-            }
-        });
-
-        mWebView.send("hello");
-        initView();
-        //hidestatusbar();
+//        mWebView.callHandler("functionInJs", new Gson().toJson(user), new CallBackFunction() {
+//            @Override
+//            public void onCallBack(String data) {
+//                Log.e("ddd",data);
+//            }
+//        });
+//
+//        mWebView.send("hello");
+          initView();
+//        //hidestatusbar();
 
         //分支合并测试
     }
