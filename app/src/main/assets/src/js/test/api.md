@@ -17,6 +17,7 @@
 | ------ | ------ | ------ |
 | 关于图书 | onebook.json | get |
 | 获取评论 | comments.json | get |
+| 家长导读 | parental_guidance.json | get |
 
 ##### 关注讲师
 | 部分 | json格式 | 请求方式 |
