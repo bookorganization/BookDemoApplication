@@ -1,20 +1,20 @@
 [
     {
-        "id": "1",
-        "cover": "../src/img/b1.png",
-        "title": "青鸟",        
-        "url": "book.html"
+        "video_id": "1",
+        "video_url": "../src/img/b1.png",
+        "name": "青鸟",        
+        "url": "book.html"//删除
     },
     {
-        "id": "2",
-        "cover": "../src/img/b1.png",
-        "title": "青鸟",        
-        "url": "book.html"
+        "video_id": "1",
+        "video_url": "../src/img/b1.png",
+        "name": "青鸟",        
+        "url": "book.html"//删除
     },
     {
-        "id": "3",
-        "cover": "../src/img/b1.png",
-        "title": "青鸟",        
-        "url": "book.html"
+        "video_id": "1",
+        "video_url": "../src/img/b1.png",
+        "name": "青鸟",        
+        "url": "book.html"//删除
     }
 ]
