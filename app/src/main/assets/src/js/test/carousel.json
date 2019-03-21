@@ -1,14 +1,14 @@
 [
     {
-        "id":"1",
-        "imgurl":"../src/img/cover.png"        
+        "playing_id":"1",
+        "picture_url":"../src/img/cover.png"        
     },
-    {
-        "id":"2",
-        "imgurl":"../src/img/cover.png"        
+     {
+        "playing_id":"1",
+        "picture_url":"../src/img/cover.png"        
     },
-    {
-        "id":"3",
-        "imgurl":"../src/img/cover.png"        
+     {
+        "playing_id":"1",
+        "picture_url":"../src/img/cover.png"        
     }
 ]
