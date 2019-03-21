@@ -11,6 +11,21 @@ $(document).ready(function () {
         },
     });
 
+    // $('.book-box').on('click', function (event) {
+    //     var sendAddr = $(this).attr('href')
+
+    //     event.preventDefault()
+    //     console.log('jsjs')
+    //     window.WebViewJavascriptBridge.callHandler(
+    //         'submitFromWeb', {
+    //             'param': '中文测试'
+    //         },
+    //         function (responseData) {
+    //             document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
+    //         }
+    //     );
+    // })
+
 
 
 
@@ -73,20 +88,7 @@ $(document).ready(function () {
             // 点击图书块传数据
 
 
-            $('.book-box').on('click', function (event) {
-                var sendAddr = $(this).attr('href')
-
-                event.preventDefault()
-                console.log('jsjs')
-                window.WebViewJavascriptBridge.callHandler(
-                    'submitFromWeb', {
-                        'param': '中文测试'
-                    },
-                    function (responseData) {
-                        document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
-                    }
-                );
-            })
+            
         },
 
 
