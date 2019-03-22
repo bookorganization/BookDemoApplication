@@ -1,14 +1,13 @@
-Vue.component('book-one',{
+Vue.component('class-part-one',{
     data:function(){
         return {
 
         }
     },
-    props:['book'],
+    props:['class'],
     template:
     '<div>'+
         '<a class="book-box"  @click="goToAnotherView(book.url)">'+
-        // '<div class="book-box"  :href="book.url">'+
             '<div class="book-box-one  clearfix" >'+
                 '<div class="book-box-inl">'+
                     '<img :src="book.cover" alt="">'+
@@ -24,14 +23,13 @@ Vue.component('book-one',{
                     '</div>'+
                 '</div>'+
             '</div>'+
-        '</div>'+
+        '</a>'+
     '</div>',
     methods:{
         goToAnotherView:function(url){
             console.log(url)
-            // window.location = url
-
-            JsBridge.callHandler(
+            window.location = url
+            Window.WebViewJavascriptBridge.callHandler(
                 'submitFromWeb', {
                     'param': '中文测试'
                 },
@@ -39,15 +37,6 @@ Vue.component('book-one',{
                     document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
                 }
             );
-
-            // Window.WebViewJavascriptBridge.callHandler(
-            //     'submitFromWeb', {
-            //         'param': '中文测试'
-            //     },
-            //     function (responseData) {
-            //         document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
-            //     }
-            // );
         }
     }
 

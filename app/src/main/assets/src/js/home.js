@@ -11,7 +11,7 @@ $(document).ready(function () {
         },
     });
 
-    // $('.book-box').on('click', function (event) {
+    // $('#home-book-list').on('click', function (event) {
     //     var sendAddr = $(this).attr('href')
 
     //     event.preventDefault()
@@ -70,7 +70,7 @@ $(document).ready(function () {
                       ]
         },
         created: function () {
-//            console.log('created 钩子执行...');
+           console.log('created 钩子执行...');
 //            //异步请求渲染数据
 //            var url = "../src/js/test/booklist.json"
 //            axios.get(url, {
