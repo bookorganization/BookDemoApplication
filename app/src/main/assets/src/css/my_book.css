@@ -1,0 +1,42 @@
+html{
+	width: 100%;
+}
+.bk{
+	background-color: #F5F5F5;
+	width: 100%;
+}
+.part1{
+	height: 66%;
+	width: 100%;
+	display: inline-block;
+}
+.part2{
+	height: 33%;
+	width: 100%;
+	display: inline-block;
+}
+.title{
+	text-align: center;
+	padding-top: 30px;
+}
+.content{
+	margin-top: 20px;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+.img_left{
+	height:30%;
+	width:30%;
+}
+.img_center{
+	height:30%;
+	width:30%;
+}
+.img_right{
+	height:30%;
+	width:30%;
+}
+.split_line{
+	width: 100%;
+}
