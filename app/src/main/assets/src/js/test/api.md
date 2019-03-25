@@ -14,11 +14,11 @@
 | 图书列表 | booklist.json | get |video_type|
 
 ##### 书籍详情
-| 部分 | json格式 | 请求方式 |
-| ------ | ------ | ------ |
-| 关于图书 | onebook.json | get |
-| 获取评论 | comments.json | get |
-| 家长导读 | parental_guidance.json | get |
+| 部分 | json格式 | 请求方式 |参数|
+| ------ | ------ | ------ |------|
+| 关于图书 | onebook.json | get |video_id|
+| 获取评论 | comments.json | get |video_id|
+| 家长导读 | parental_guidance.json | get |video_id|
 
 ##### 关注讲师
 | 部分 | json格式 | 请求方式 |
