@@ -1,23 +1,37 @@
 .classes-part{
-    margin-top: 30px;
+    margin: 30px 25px;
 }
 .class-wrapper{
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    margin: 20px 0;
 }
 
 .class-left{
     display: flex;
     justify-content: center;
     flex-direction: column;
+    margin-right: 30px;
+    width: 45px;
+    text-align: center;
 }
 .class-logo img{
     width: 24px;
+    height: 24px;
 }
 .class-type{
     font-size: 14px;
-    color:#ED785D;
+    width: 45px;
+}
+.class-type1{
+    color: #ED785D;
+}
+.class-type2{
+    color: #BBDC5C;
+}
+.class-type3{
+    color: #3CAEE9;
 }
 .class-tag{
     font-size: 12px;
@@ -27,10 +41,15 @@
     padding: 0 10px;
     background: #ececec;
     border-radius: 16px;
-    margin: 0 5px;
+    margin: 5px;
 }
 .class-right{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+}
+.class-line{
+    height: 1px;
+    background: #ECECEC;
+    width: 100%;
 }
