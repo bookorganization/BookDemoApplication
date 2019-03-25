@@ -206,13 +206,28 @@ $(document).ready(function () {
     //acitivity跳转
 
     //分类跳转
-    $('.class-box').on('click',function(){
+    $('.class-box-1').on('click',function(){
         //
         var url = $(this).attr("url")
         console.log($(this).attr("url"))
         // event.preventDefault()
         JsBridge.callHandler(
-            'changeClass', { //接受分类，切换activity
+            'changeClass1', { //接受分类，切换activity
+                'Address': url
+            },
+            function (responseData) {
+                document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
+            }
+        );
+    })
+    //全部分类的跳转
+    $('.class-box-2').on('click',function(){
+        //
+        var url = $(this).attr("url")
+        console.log($(this).attr("url"))
+        // event.preventDefault()
+        JsBridge.callHandler(
+            'changeClass2', { //接受分类，切换activity
                 'Address': url
             },
             function (responseData) {
