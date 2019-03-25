@@ -1,4 +1,8 @@
 .clearfix{overflow:auto;_height:1%}
+body{
+    padding: 0;
+    margin: 0;
+}
 /* book列表 */
 .book-box{
     display: block;
@@ -9,38 +13,43 @@
     color:black;
 }
 .book-box-inl{
-    width: 22%;
+    width: 20%;
 }
 .book-box-inl img{
     width: 100%;
     padding: 5px;
 }
 .book-box-inr{
-    width: 78%;
+    width: 80%;
+}
+.book-age{
+    text-align: right;
+    font-size: 16px;
+    margin-right: 5px;
+}
+.book-age span{
+    font-size: 12px;
 }
 .book-title{
-    font-size: 17px;
-    margin: 3px 10px 5px 30px;
+    font-size: 20px;
+    margin: 3px 10px 5px 15px;
 }
 
 .book-short-detail{
-    font-size: 11px;
-    margin: 3px 10px 5px 30px;    
-    height: 30px;
-    color: #525252;
+    font-size: 12px;
+    margin: 3px 10px 10px 15px; 
+    color: #999;
     letter-spacing: 0.5px;
-}
-.book-tags{
-    font-size: 9px;
-    margin: 10px 5px 10px 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-family: MicrosoftYaHei;
 }
 .book-tag-age,
 .book-tag-cate{
-    border: 1px solid;
-    border-radius: 30px;
-    padding: 0px 8px;
+    /* padding: 0px 8px; */
     margin-right: 5px;
-    font-weight: 300;
+    /* font-weight: 300; */
 }
 .book-tag-age{
     border-color: #F9D22D;
@@ -48,21 +57,23 @@
 }
 .book-tag-cate{
     border-color: #c4c4c4;
-    color:#c4c4c4;
+    color:#999;
 }
 .book-states{
     font-size: 11px;
-    margin-left: 30px;
-    font-weight: 400;
+    margin-left: 15px;
+    color:#999;
+    margin-right: 15px;
+    /* font-weight: 400; */
 }
 .book-play-times{
-    color: #c4c4c4;
+    /* color: #c4c4c4; */
 }
 .book-on-date{
     display: inline-block;
     float: right;
     margin-right: 5px;
-    color:#F9D22D;
+    /* color:#F9D22D; */
 }
 
 
@@ -113,4 +124,137 @@
     letter-spacing: 0.7px;
     color:#c4c4c4;
     font-weight: 400;
+}
+
+
+/* from home.css */
+/* 家长必看 */
+.parents-recommend{
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    margin-bottom: 15px;
+}
+.parents-re-img{    
+    height: 16px;
+}
+.parents-re-img img{    
+    height: 100%;
+}
+.parents-re-line{
+    width: 1px;
+    margin: 0 5px;
+    height: 6px;
+    padding: 3px 0;
+    background: rgba(218,218,218,1);
+}
+.parents-re-info{
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    height:16px;
+    font-size:12px;
+    font-family:MicrosoftYaHei;
+    color:rgba(102,102,102,1);
+    line-height:16px;
+}
+
+.recom-bar{
+    margin-bottom: 10px;
+}
+.recom-bar-inner{    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 5px solid #F9D22D;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-left: 15px;
+    height: 24px;
+}
+.rbi-title{
+    font-size: 18px;
+    font-weight: normal;
+}
+.rbi-time{
+    display:inline-block;
+    margin-left: 10px;
+    font-size: 14px;
+    color:#c4c4c4;
+    position: relative;
+    bottom: 1px;
+}
+.rbi-more{
+    color: #999;
+    text-decoration: none;
+    display: block;
+    float: right;
+    font-size: 15px;
+    /* line-height: 24px; */
+}
+
+.rbi-more img{
+    width: 6px;
+}
+
+
+/* 推荐书籍 */
+.recom-books{
+    display: flex;
+    margin: 0 10px;
+    padding-bottom: 10px;
+    color: #333;
+    font-size: 16px;
+    text-align: center;
+    justify-content: space-between;
+
+}
+.recom-book p{
+    margin: 0px 0;
+    font-size: 13px;
+}
+.recom-book img{
+    width: 80px;
+}
+
+
+/* 分类搜索结果 */
+.search-book-result{
+    margin: 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+
+}
+.result-order{
+    height: 18px;
+}
+.result-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.result-new,
+.result-hot{   
+    width: 35px;
+    height: 18px;
+    text-align: center;
+    margin: 0 0 0 5px;
+}
+.btn-radius{
+    border: 1px solid #ED4242;
+    border-radius: 30px;
+    color:#ED4242;
+}
+
+#search-book-list{
+    margin: 0 5px;
+}
+.search-book-result-line{
+    height: 1px;
+    width: calc(100% - 10px);
+    margin: 0 auto;
+    background: #ECECEC;
+    margin-bottom: 5px;
 }
