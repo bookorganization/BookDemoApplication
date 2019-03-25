@@ -37,3 +37,4 @@
 | 账号密码登录 | loginbypassword.json | post |
 | 验证码登录 | loginbyverifycode.json | post |
 | 发送验证码 | sendmsg.json|post|
+| 注册、登陆成功后返回 | ResultUser.json|get|
