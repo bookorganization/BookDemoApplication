@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity{
         RelativeLayout myrl = (RelativeLayout)findViewById(R.id.main_my_rl);
         findrl.setOnClickListener(new MyListener());
         myrl.setOnClickListener(new MyListener());
+        bookrl.setOnClickListener(new MyListener());
         WebSettings webSettings =   mWebView.getSettings();
         webSettings.setLoadWithOverviewMode(true);
         mWebView.setDefaultHandler(new DefaultHandler());
@@ -145,12 +146,14 @@ public class MainActivity extends AppCompatActivity{
                     toprl.setVisibility(View.VISIBLE);
                     break;
                 case R.id.main_my_rl:
-                    i =1;
+                    i = 1;
                     updateData();
                     toprl.setVisibility(View.GONE);
                     break;
                 case R.id.main_book_rl:
-
+                    i = 2;
+                    updateData();
+                    toprl.setVisibility(View.GONE);
                     break;
             }
         }
@@ -200,7 +203,9 @@ public class MainActivity extends AppCompatActivity{
         if(i == 0){
             mWebView.loadUrl("file:///android_asset/pages/index.html");
         }else if(i == 1){
-            mWebView.loadUrl("file:///android_asset/pages/me.html");
+            mWebView.loadUrl("file:///android_asset/pages/my_information.html");
+        }else if(i == 2){
+            mWebView.loadUrl("file:///android_asset/pages/my_book.html");
         }
 
     }
