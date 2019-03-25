@@ -11,5 +11,6 @@
     <color name="blue">#3FB6EE</color>
     <color name="blue2">#9CDAF7</color>
     <color name="gray4">#EEECEC</color>
-    <color name="gray5">#ABABAB</color><!--底栏字-->
+    <color name="gray5">#999999</color><!--底栏字2-->
+    <color name="green">#87AE09</color><!--底栏字1-->
 </resources>

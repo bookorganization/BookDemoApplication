@@ -15,24 +15,32 @@
             android:id="@+id/main_top"
             android:layout_width="match_parent"
             android:background="@color/white"
-            android:layout_height="80dp">
+            android:layout_height="49dp">
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="28dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="35dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="70dp"
-                android:layout_alignParentLeft="true"
+                android:id="@+id/main_research_rl"
+                android:layout_width="match_parent"
+                android:layout_height="29dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_centerInParent="true"
                 android:background="@drawable/research_bg">
                 <ImageView
                     android:id="@+id/research_img"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:src="@mipmap/research"
+                    android:layout_width="14dp"
+                    android:layout_height="15dp"
+                    android:src="@mipmap/sousuo"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
                     />
+                <TextView
+                    android:layout_width="96dp"
+                    android:layout_height="16dp"
+                    android:text="请输入书名或作者"
+                    android:textSize="12dp"
+                    android:textColor="@color/gray5"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/research_img"
+                    android:layout_marginLeft="10dp"/>
             </RelativeLayout>
         </RelativeLayout>
         <com.example.a10132.bookdemoapplication.widget.PtrClassicFrameLayout
@@ -69,12 +77,12 @@
             android:layout_weight="1">
             <ImageView
                 android:id="@+id/main_find_img"
-                android:layout_width="25dp"
+                android:layout_width="20dp"
                 android:layout_height="25dp"
                 android:scaleType="fitXY"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="6dp"
-                android:src="@mipmap/find"/>
+                android:src="@mipmap/index1"/>
             <TextView
                 android:id="@+id/main_find_tv"
                 android:layout_width="wrap_content"
@@ -82,8 +90,8 @@
                 android:layout_below="@id/main_find_img"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="3dp"
-                android:text="发现"
-                android:textColor="@color/gray5"
+                android:text="首页"
+                android:textColor="@color/green"
                 android:textAlignment="center"
                 android:textSize="14dp"/>
         </RelativeLayout>
@@ -94,12 +102,12 @@
             android:layout_weight="1">
             <ImageView
                 android:id="@+id/main_book_img"
-                android:layout_width="25dp"
+                android:layout_width="20dp"
                 android:layout_height="25dp"
                 android:scaleType="fitXY"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="6dp"
-                android:src="@mipmap/book"/>
+                android:src="@mipmap/book2"/>
             <TextView
                 android:id="@+id/main_book_tv"
                 android:layout_width="wrap_content"
@@ -119,12 +127,12 @@
             android:layout_weight="1">
             <ImageView
                 android:id="@+id/main_my_img"
-                android:layout_width="25dp"
+                android:layout_width="20dp"
                 android:layout_height="25dp"
                 android:scaleType="fitXY"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="6dp"
-                android:src="@mipmap/my"/>
+                android:src="@mipmap/my2"/>
             <TextView
                 android:id="@+id/main_my_tv"
                 android:layout_width="wrap_content"
