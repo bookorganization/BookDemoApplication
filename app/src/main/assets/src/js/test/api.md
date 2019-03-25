@@ -21,10 +21,10 @@
 | 家长导读 | parental_guidance.json | get |video_id|
 
 ##### 关注讲师
-| 部分 | json格式 | 请求方式 |
-| ------ | ------ | ------ |
-| 图书列表 | booklist.json | get |
-| 讲师介绍 | teacher.json | get |
+| 部分 | json格式 | 请求方式 |参数|
+| ------ | ------ | ------ |------ |
+| 图书列表 | booklist.json | get |lecturer_id|
+| 讲师介绍 | teacher.json | get |lecturer_id|
 
 ##### 我的页面
 | 部分 | json格式 | 请求方式 |
