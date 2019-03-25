@@ -2,11 +2,11 @@
 
 ##### 首页
 | 部分 | json格式 | 请求方式 |参数|
-| ------ | ------ | ------ |
-| 轮播 | carousel.json | get |
-| 推荐书籍 | bookrecommend.json | get |
-| 图书列表 | booklist.json | get |
-| 搜索 | booklist.json | post |video_name|
+| ------ | ------ | ------ |------|
+| 轮播 | carousel.json | get ||
+| 推荐书籍 | bookrecommend.json | get ||
+| 图书列表 | booklist.json | get ||
+| 搜索 | booklist.json | post |video_name||
 
 ##### 亲近文学（视频类型：0标识亲近文学；1标识益智科普）
 | 部分 | json格式 | 请求方式 |请求参数|
