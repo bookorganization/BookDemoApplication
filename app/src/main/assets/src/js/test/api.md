@@ -36,3 +36,4 @@
 | 注册信息 | signup.json | post |
 | 账号密码登录 | loginbypassword.json | post |
 | 验证码登录 | loginbyverifycode.json | post |
+| 发送验证码 | sendmsg.json|post|
