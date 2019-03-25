@@ -7,10 +7,10 @@
 | 推荐书籍 | bookrecommend.json | get |
 | 图书列表 | booklist.json | get |
 
-##### 亲近文学
-| 部分 | json格式 | 请求方式 |
-| ------ | ------ | ------ |
-| 图书列表 | booklist.json | get |
+##### 亲近文学（视频类型：0标识亲近文学；1标识益智科普）
+| 部分 | json格式 | 请求方式 |请求参数|
+| ------ | ------ | ------ |------|
+| 图书列表 | booklist.json | get |video_type|
 
 ##### 书籍详情
 | 部分 | json格式 | 请求方式 |
@@ -33,5 +33,8 @@
 ##### 登录注册
 | 部分 | json格式 | 请求方式 |
 | ------ | ------ | ------ |
-| 注册信息 | signup.json | post |
-| 登录信息 | login.json | post |
+| 注册信息 | register.json | post |
+| 账号密码登录 | loginbypassword.json | post |
+| 验证码登录 | loginbyverifycode.json | post |
+| 发送验证码 | sendmsg.json|post|
+| 注册、登陆成功后返回 | ResultUser.json|get|
