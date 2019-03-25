@@ -2,6 +2,7 @@ package com.example.a10132.bookdemoapplication;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
@@ -15,7 +16,9 @@ import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a10132.bookdemoapplication.widget.PtrClassicFrameLayout;
@@ -33,6 +36,13 @@ public class MainActivity extends AppCompatActivity{
     private PtrClassicFrameLayout mPtrFrame;
     private BridgeWebView mWebView;
     private RelativeLayout toprl;
+    private ImageView findimg;
+    private ImageView bookimg;
+    private ImageView myimg;
+    private TextView findtv;
+    private TextView booktv;
+    private TextView mytv;
+    private RelativeLayout researchrl;
     int RESULT_CODE = 0;
     private final String TAG = "MainActivity";
     int i = 0;
@@ -57,6 +67,14 @@ public class MainActivity extends AppCompatActivity{
         RelativeLayout findrl = (RelativeLayout)findViewById(R.id.main_find_rl);
         RelativeLayout bookrl = (RelativeLayout)findViewById(R.id.main_book_rl);
         RelativeLayout myrl = (RelativeLayout)findViewById(R.id.main_my_rl);
+        findimg = (ImageView)findViewById(R.id.main_find_img);
+        bookimg = (ImageView)findViewById(R.id.main_book_img);
+        myimg = (ImageView)findViewById(R.id.main_my_img);
+        findtv = (TextView)findViewById(R.id.main_find_tv);
+        booktv = (TextView)findViewById(R.id.main_book_tv);
+        mytv = (TextView)findViewById(R.id.main_my_tv);
+        researchrl = (RelativeLayout)findViewById(R.id.main_research_rl);
+        researchrl.setOnClickListener(new MyListener());
         findrl.setOnClickListener(new MyListener());
         myrl.setOnClickListener(new MyListener());
         bookrl.setOnClickListener(new MyListener());
@@ -66,26 +84,7 @@ public class MainActivity extends AppCompatActivity{
         webSettings.setJavaScriptEnabled(true);//支持js脚本
         webSettings.setDomStorageEnabled(true);////设置DOM Storage缓存，不然插件出不来
         mWebView.setWebChromeClient(new WebChromeClient(){
-//            @SuppressWarnings("unused")
-//            public void openFileChooser(ValueCallback<Uri> uploadMsg, String AcceptType, String capture) {
-//                this.openFileChooser(uploadMsg);
-//            }
-//
-//            @SuppressWarnings("unused")
-//            public void openFileChooser(ValueCallback<Uri> uploadMsg, String AcceptType) {
-//                this.openFileChooser(uploadMsg);
-//            }
-//
-//            public void openFileChooser(ValueCallback<Uri> uploadMsg) {
-//                mUploadMessage = uploadMsg;
-//                pickFile();
-//            }
-//            @Override
-//            public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
-//                mUploadMessageArray = filePathCallback;
-//                pickFile();
-//                return true;
-//            }
+
         });//用chrome浏览器
         mWebView.loadUrl("file:///android_asset/pages/index.html");
         mWebView.registerHandler("submitFromWeb", new BridgeHandler() {
@@ -99,31 +98,31 @@ public class MainActivity extends AppCompatActivity{
             }
 
         });
-//        mWebView.setDefaultHandler(new BridgeHandler() {
-//            @Override
-//            public void handler(String data, CallBackFunction function) {
-//                String msg = "默认接收到js的数据：" + data;
-//
-//
-//                function.onCallBack("java默认接收完毕，并回传数据给js"); //回传数据给js
-//            }
-//        });
-//        User user = new User();
-//        Location location = new Location();
-//        location.address = "SDU";
-//        user.location = location;
-//        user.name = "大头鬼";
+        mWebView.registerHandler("changeClass1", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Log.i(TAG, "handler = submitFromWeb, data from web = " + data);
+                //Toast.makeText(MainActivity.this, data, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, BookListActivity.class);
+                intent.putExtra("id",data);
+                startActivity(intent);
+                function.onCallBack("收到changeClass1");
+            }
 
-//        mWebView.callHandler("functionInJs", new Gson().toJson(user), new CallBackFunction() {
-//            @Override
-//            public void onCallBack(String data) {
-//                Log.e("ddd",data);
-//            }
-//        });
-//
-//        mWebView.send("hello");
+        });
+        mWebView.registerHandler("changeClass2", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Log.i(TAG, "handler = submitFromWeb, data from web = " + data);
+                //Toast.makeText(MainActivity.this, data, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, ClassesActivity.class);
+                startActivity(intent);
+                function.onCallBack("收到changeClass2");
+            }
+
+        });
           initView();
-//        //hidestatusbar();
+       //hidestatusbar();
 
         //分支合并测试
     }
@@ -143,18 +142,30 @@ public class MainActivity extends AppCompatActivity{
                 case R.id.main_find_rl:
                     i = 0;
                     updateData();
+                    initImage();
+                    findimg.setImageResource(R.mipmap.index1);
+                    findtv.setTextColor(getResources().getColor(R.color.green));
                     toprl.setVisibility(View.VISIBLE);
                     break;
                 case R.id.main_my_rl:
                     i = 1;
                     updateData();
+                    initImage();
+                    myimg.setImageResource(R.mipmap.my1);
+                    mytv.setTextColor(getResources().getColor(R.color.green));
                     toprl.setVisibility(View.GONE);
                     break;
                 case R.id.main_book_rl:
                     i = 2;
                     updateData();
+                    initImage();
+                    bookimg.setImageResource(R.mipmap.book1);
+                    booktv.setTextColor(getResources().getColor(R.color.green));
                     toprl.setVisibility(View.GONE);
                     break;
+                case R.id.main_research_rl:
+                    Intent intent = new Intent(MainActivity.this, ClassesActivity.class);
+                    startActivity(intent);
             }
         }
     }
@@ -208,6 +219,14 @@ public class MainActivity extends AppCompatActivity{
             mWebView.loadUrl("file:///android_asset/pages/my_book.html");
         }
 
+    }
+    private  void initImage() {
+        findtv.setTextColor(getResources().getColor(R.color.gray5));
+        booktv.setTextColor(getResources().getColor(R.color.gray5));
+        mytv.setTextColor(getResources().getColor(R.color.gray5));
+        findimg.setImageResource(R.mipmap.index2);
+        bookimg.setImageResource(R.mipmap.book2);
+        myimg.setImageResource(R.mipmap.my2);
     }
     /**
      * 隐藏状态栏
