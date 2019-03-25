@@ -131,6 +131,12 @@
                 <div>做题</div>
             </div>
         </div>
+
+
+        <!-- qecode -->
+        <div id="qrcode" style="display:none"></div>
+        
+        
     </div>
 
 
@@ -139,6 +145,8 @@
 
     <script src="../src/modules/dplayer/DPlayer.min.js"></script>
     <script src="../src/modules/vue/vue.min.js"></script>
+    <script src="../src/modules/qrcode/qrcode.min.js"></script>
+    <script src="../src/modules/mobiletouch/touchwipe.js"></script>
     <script src="../src/js/book.js"></script>
 </body>
 <script>
@@ -170,13 +178,7 @@
                 }
             });
 
-            <!--bridge.registerHandler("submitFromBook", function(data, responseCallback) {-->
-                <!--document.getElementById("show").innerHTML = ("data from Java: = " + data);-->
-                <!--if (responseCallback) {-->
-                    <!--var responseData = "Javascript Says Right back aka!";-->
-                    <!--responseCallback(responseData);-->
-                <!--}-->
-            <!--});-->
+       
         })
     </script>
 </html>
