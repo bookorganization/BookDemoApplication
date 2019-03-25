@@ -34,4 +34,5 @@
 | 部分 | json格式 | 请求方式 |
 | ------ | ------ | ------ |
 | 注册信息 | signup.json | post |
-| 登录信息 | login.json | post |
+| 账号密码登录 | loginbypassword.json | post |
+| 验证码登录 | loginbyverifycode.json | post |
