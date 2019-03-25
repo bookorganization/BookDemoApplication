@@ -33,7 +33,7 @@
 ##### 登录注册
 | 部分 | json格式 | 请求方式 |
 | ------ | ------ | ------ |
-| 注册信息 | signup.json | post |
+| 注册信息 | register.json | post |
 | 账号密码登录 | loginbypassword.json | post |
 | 验证码登录 | loginbyverifycode.json | post |
 | 发送验证码 | sendmsg.json|post|
