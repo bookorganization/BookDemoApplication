@@ -9,12 +9,6 @@
 | 图书列表 | booklist.json | get ||
 | 搜索 | booklist.json | post |video_name||
 
-| 部分 | json格式 | 请求方式 |url|参数|
-| ------ | ------ | ------ |------|------|
-| 轮播 | carousel.json | get |||
-| 推荐书籍 | bookrecommend.json |get|  ||
-| 图书列表 | booklist.json | get |||
-| 搜索 | booklist.json | post ||video_name||
 
 
 ##### 亲近文学（视频类型：0标识亲近文学；1标识益智科普）
@@ -29,6 +23,7 @@
 | 获取评论 | comments.json | get |video_id|
 | 家长导读 | parental_guidance.json | get |video_id|
 | 收藏 | collecte.json | get |video_id,user_id|
+| 相关图书推荐 | likebooklist.json | get |video_id|
 
 
 ##### 关注讲师
