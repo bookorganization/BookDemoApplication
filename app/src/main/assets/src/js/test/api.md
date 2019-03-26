@@ -19,6 +19,7 @@
 | 关于图书 | onebook.json | get |video_id,user_id|
 | 获取评论 | comments.json | get |video_id|
 | 家长导读 | parental_guidance.json | get |video_id|
+| 收藏 | collection.json | get |video_id,user_id|
 
 ##### 关注讲师
 | 部分 | json格式 | 请求方式 |参数|
