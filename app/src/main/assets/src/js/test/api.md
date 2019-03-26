@@ -26,7 +26,11 @@
 | 图书列表 | booklist.json | get |lecturer_id|
 | 讲师介绍 | teacher.json | get |lecturer_id|
 | 得到所有讲师姓名 | teacher_name.json | get ||
-
+##### 书架
+| 部分 | json格式 | 请求方式 |参数|
+| ------ | ------ | ------ |------ |
+| 历史列表 | history.json | get |user_id|
+| 收藏列表 | collection.json | get |user_id|
 ##### 我的页面
 | 部分 | json格式 | 请求方式 |
 | ------ | ------ | ------ |
