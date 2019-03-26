@@ -26,14 +26,16 @@ Vue.component('book-one',{
             '</div>'+
         '</div>'+
     '</div>',
-    methods:{
+    methods:{        
+        //【跳转到书籍】 param:bookid
+        // go to book.html
         goToAnotherView:function(url){
-            console.log(url)
+            console.log('go to book.html book id is '+ url)
             // window.location = url
 
             JsBridge.callHandler(
-                'submitFromWeb', {
-                    'param': '中文测试'
+                'goToBook', {
+                    'bookid': url
                 },
                 function (responseData) {
                     document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
