@@ -4,7 +4,7 @@
 | 部分 | json格式 | 请求方式 |url|参数|
 | ------ | ------ | ------ |------|------|
 | 轮播 | carousel.json | get |||
-| 推荐书籍 | bookrecommend.json || get ||
+| 推荐书籍 | bookrecommend.json |get|  ||
 | 图书列表 | booklist.json | get |||
 | 搜索 | booklist.json | post ||video_name||
 
