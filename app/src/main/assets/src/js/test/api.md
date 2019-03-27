@@ -1,12 +1,15 @@
 #### API
 
 ##### 首页
-| 部分 | json格式 | 请求方式 |url|参数|
-| ------ | ------ | ------ |------|------|
-| 轮播 | carousel.json | get |||
-| 推荐书籍 | bookrecommend.json |get|  ||
-| 图书列表 | booklist.json | get |||
-| 搜索 | booklist.json | post ||video_name||
+
+| 部分 | json格式 | 请求方式 |参数|
+| ------ | ------ | ------ |------|
+| 轮播 | carousel.json | get ||
+| 推荐书籍 | bookrecommend.json | get ||
+| 图书列表 | booklist.json | get ||
+| 搜索 | booklist.json | post |video_name||
+
+
 
 ##### 亲近文学（视频类型：0标识亲近文学；1标识益智科普）
 | 部分 | json格式 | 请求方式 |请求参数|
@@ -16,9 +19,12 @@
 ##### 书籍详情
 | 部分 | json格式 | 请求方式 |参数|
 | ------ | ------ | ------ |------|
-| 关于图书 | onebook.json | get |video_id,user_id|
+| 关于图书 | onebook.json | get |video_id|
 | 获取评论 | comments.json | get |video_id|
 | 家长导读 | parental_guidance.json | get |video_id|
+| 收藏 | collecte.json | get |video_id,user_id|
+| 相关图书推荐 | likebooklist.json | get |video_id|
+
 
 ##### 关注讲师
 | 部分 | json格式 | 请求方式 |参数|
@@ -29,8 +35,8 @@
 ##### 书架
 | 部分 | json格式 | 请求方式 |参数|
 | ------ | ------ | ------ |------ |
-| 历史列表 | history.json | get |user_id|
-| 收藏列表 | collection.json | get |user_id|
+| 历史列表 | gethistory.json | get |user_id|
+| 收藏列表 | getcollection.json | get |user_id|
 ##### 我的页面
 | 部分 | json格式 | 请求方式 |
 | ------ | ------ | ------ |

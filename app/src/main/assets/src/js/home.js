@@ -61,6 +61,115 @@ $(document).ready(function () {
 
     // })
 
+    // 异步请求数据
+    // 获取图书列表
+    // $.ajax({
+    //     type:GET,
+    //     url:'',
+    //     context:$('#home-book-list'),
+    //     async:false,
+    //     dataType:JSON,
+    //     data:{
+
+    //     },
+    //     success:function(res){
+    //         console.log(res);
+    //         //执行页面渲染
+    //         // ...
+    //     },
+    //     error:function(res){
+    //         console.log(res);
+    //         //执行页面刷新提示让用户刷新
+    //     }
+
+
+    // })
+
+    //获取推荐书籍
+    //    $.ajax({
+    //        type: GET,
+    //        url: '',
+    //        context: $('#home-book-list'),
+    //        async: false,
+    //        dataType: JSON,
+    //        data: {
+
+    //        },
+    //        success: function (res) {
+    //            console.log(res);
+    //            //执行页面渲染
+    //            // ...
+    //        },
+    //        error: function (res) {
+    //            console.log(res);
+    //            //执行页面刷新提示让用户刷新
+    //        }
+
+    //    })
+
+    recomRender()
+    function recomRender(){
+        var recom = [
+            {
+                'video_url':'../src/img/micky.png',
+                'url':'book.html',
+                'name':'米老鼠1'
+            },
+            {
+                'video_url':'../src/img/micky.png',
+                'url':'book.html',
+                'name':'米老鼠2'
+            },
+            {
+                'video_url':'../src/img/micky.png',
+                'url':'book.html',
+                'name':'米老鼠3'
+            },
+            {
+                'video_url':'../src/img/micky.png',
+                'url':'book.html',
+                'name':'米老鼠4'
+            },
+        ]
+    
+        //渲染推荐列表
+        function recommendList(recomList, recomLength, wrapper){
+            var recommendDom = ''        
+    
+            for(var re=0; re<recomLength; re++){
+                recommendDom +=
+                '<div class="recom-book" url=' + recomList[re]["url"] + '>'+
+                    '<img src="' + recomList[re]["video_url"] + '" alt="">'+
+                    '<p>'+ recomList[re]["name"] +'</p>'+
+                '</div>'
+            }
+            $(wrapper).html(recommendDom);
+    
+    
+        }
+        
+        //渲染
+        recommendList(recom,recom.length,'.recom-books')
+
+        //书籍跳转
+        $('.recom-book').on('click',function(){
+            //
+            var url = $(this).attr("url")
+            console.log($(this).attr("url"))
+            // event.preventDefault()
+            JsBridge.callHandler(
+                'changeClass', { //接受分类，切换activity
+                    'Address': url
+                },
+                function (responseData) {
+                    document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
+                }
+            );
+        })
+    }
+
+    
+
 
     // 获取图书列表
     // $.ajax({
