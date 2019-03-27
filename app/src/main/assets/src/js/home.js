@@ -214,10 +214,7 @@ $(document).ready(function () {
 
     })
 
-
-
     //Java acitivity跳转 传送数据
-
     
     //【跳转到书籍列表】  param:classTag
     //go to boolist.html
@@ -252,13 +249,6 @@ $(document).ready(function () {
                 document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
             }
         );
-    })
-
-    //
-
-    
-
-
-   
+    })   
 
 })
