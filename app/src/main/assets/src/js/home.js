@@ -363,44 +363,7 @@ $(document).ready(function () {
         );
     })
 
-<<<<<<< HEAD
-    //acitivity跳转
 
-    //分类跳转
-    $('.class-box-1').on('click',function(){
-        //
-        var url = $(this).attr("url")
-        console.log($(this).attr("url"))
-        // event.preventDefault()
-        JsBridge.callHandler(
-            'changeClass1', { //接受分类，切换activity
-                'Address': url
-            },
-            function (responseData) {
-                document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
-            }
-        );
-    })
-    //全部分类的跳转
-    $('.class-box-2').on('click',function(){
-        //
-        var url = $(this).attr("url")
-        console.log($(this).attr("url"))
-        // event.preventDefault()
-        JsBridge.callHandler(
-            'changeClass2', { //接受分类，切换activity
-                'Address': url
-            },
-            function (responseData) {
-                document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
-            }
-        );
-    })
-=======
-    //
-
-    
->>>>>>> c98f3c838dbd013b673571aa755c3ba41ea85b1f
 
 
    
