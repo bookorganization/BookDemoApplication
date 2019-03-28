@@ -188,7 +188,7 @@
     border-radius: 30px;
 }
 .comment-user-name{
-    
+    margin-left: 10px;
     font-size: 12px;
     line-height: 16px;
 }
@@ -203,9 +203,15 @@
 }
 .comment-text{
     margin-top: 10px;
+    margin-bottom: 10px;
     font-size: 12px;
     line-height: 15px;
     color:#666;
+}
+.comment-line{
+    height: 1px;
+    background: #ececec;
+    margin-bottom: 10px;
 }
 
 /* 开始做题 */
