@@ -26,13 +26,14 @@
             <div class="content_login" >       
                 <div class="part1">
                     <img src="../src/img/phone.png" class="phone_img">
-                    <input placeholder="请输入登录手机号码" style="border:0px;"></input>
+                    <input placeholder="请输入登录手机号码" style="border:0px;" name="user_phone" class="user_phone"></input>
                 </div>
                 <div class="part1">
                     <img src="../src/img/number.png" class="number_img">
-                    <input placeholder="请输入手机验证码" style="border:0px;"></input>              
+                    <input placeholder="请输入手机验证码" style="border:0px;" name="verifyCode"></input>              
                 </div>
-                <button type="button" class="gain_num"><p class="gain_text" onclick="http://10.28.129.193:8080/QingzaoReading/sendSms">获取验证码</p></button>
+                <button type="button" class="gain_num"><p class="gain_text" onclick="login()">获取验证码</p></button>
+                <button type="button" class="gain_num"><p class="gain_text" onclick="login0()">登录</p></button>
             </div>
             <div class="end">
                 <a id="login_pas"  onclick="turn_off(this.id)">密码登录</a>
@@ -89,6 +90,44 @@
 <script src="../src/js/Jsbridge.js"></script>
 
 <script type="text/javascript">
+
+    function login() {
+        var url = $('.user_phone').val();
+        $.ajax({
+        //几个参数需要注意一下
+            type: "post",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "http://10.28.129.193:8080/QingzaoReading/sendSms",
+            data: $('#form .user_phone').serialize(),
+            success: function (result) {
+                console.log(result);//打印服务端返回的数据(调试用)
+
+            },
+            error : function() {
+                alert("异常！");
+            }
+        });
+    }
+
+    function login0() {
+        var url = $('.user_phone').val();
+        $.ajax({
+        //几个参数需要注意一下
+            type: "post",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "http://10.28.129.193:8080/QingzaoReading/register",
+            data: $('#form').serialize(),
+            success: function (result) {
+                console.log(result);//打印服务端返回的数据(调试用)
+
+            },
+            error : function() {
+                alert("异常！");
+            }
+        });
+    }
+
+
     function login1() {
         var url = $('.user_phone').val();
         $.ajax({
@@ -99,6 +138,7 @@
             data: $('#form1').serialize(),
             success: function (result) {
                 console.log(result);//打印服务端返回的数据(调试用)
+
                 console.log(JSON.stringify(result));//打印服务端返回的数据(调试用)
                 JsBridge.callHandler(
                 'password_login', { //接受分类，切换activity
@@ -106,13 +146,12 @@
                 },
                 function (responseData) {
                     console.log(responseData);
-                    document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData;
                 }
             );
-                // alert("SUCCESS");
-                // if (result.resultCode == 200) {
-                //     alert("SUCCESS");
-                // }
+                alert("SUCCESS");
+                if (result.resultCode == 200) {
+                    alert("SUCCESS");
+                }
                 ;
             },
             error : function() {
@@ -142,21 +181,14 @@
     function login3() {
         console.log($('#form2').serialize());
 
-        var data={};
-        data.user_phone = $.trim($("input[name=register_user_phone]").val());
-		data.user_password = $.trim($("input[name=register_user_password]").val());
-		data.verifyCode = $.trim($("input[name=register_verifyCode]").val());
-
-
-
         $.ajax({
         //几个参数需要注意一下
             type: "post",//方法类型
             async : true,
             dataType: "json",//预期服务器返回的数据类型
             url: "http://10.28.129.193:8080/QingzaoReading/register",
-            //data: $('#form2').serialize(),
-            data: data,
+            data: $('#form2').serialize(),
+            //data: data,
             success: function (result) {
                 console.log(result);//打印服务端返回的数据(调试用)
             },
