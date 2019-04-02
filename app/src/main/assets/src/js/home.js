@@ -11,8 +11,8 @@ $(document).ready(function () {
     //获取轮播
     $.ajax({
         type: 'GET',
-        url: '../src/js/test/carousel.json',
-        // url: 'http://10.28.129.193:8080/QingzaoReading/carousel',
+        // url: '../src/js/test/carousel.json',
+        url: 'http://10.112.7.201:8080/carousel',
         // context: $('#home-book-list'),
         async: false,
         dataType: 'JSON',
@@ -46,8 +46,8 @@ $(document).ready(function () {
     // 获取推荐书籍
     $.ajax({
         type: 'GET',
-        url:'../src/js/test/bookrecommend.json',
-        // url: 'http://10.28.129.193:8080/QingzaoReading/bookrecommend',
+        // url:'../src/js/test/bookrecommend.json',
+        url: 'http://10.112.7.201:8080/bookrecommend',
         // context: $('#home-book-list'),
         async: false,
         dataType: 'JSON',
@@ -122,8 +122,8 @@ $(document).ready(function () {
     // 获取图书列表
     $.ajax({
         type:'GET',
-        url:'../src/js/test/booklist.json',
-        // url:'http://10.28.129.193:8080/QingzaoReading/booklist',
+        // url:'../src/js/test/booklist.json',
+        url:'http://10.112.7.201:8080/booklist',
         context:$('#home-book-list'),
         async:false,
         dataType:'JSON',
