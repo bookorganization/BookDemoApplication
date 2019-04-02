@@ -63,3 +63,103 @@ function hideShowPsw1(){
         demo_img.src = "../src/img/visible.png";
     }
 }
+
+
+function login() {
+    $.ajax({
+    //几个参数需要注意一下
+        type: "post",//方法类型
+        dataType: "json",//预期服务器返回的数据类型
+        url: "http://10.112.7.210:8080/sendSms",
+        data: $('#form .user_phone').serialize(),
+        success: function (result) {
+            console.log(result);//打印服务端返回的数据(调试用)
+
+        },
+        error : function() {
+            alert("异常！");
+        }
+    });
+}
+
+function login0() {
+    $.ajax({
+    //几个参数需要注意一下
+        type: "post",//方法类型
+        dataType: "json",//预期服务器返回的数据类型
+        url: "http://10.112.7.210:8080/register",
+        data: $('#form').serialize(),
+        success: function (result) {
+            console.log(result);//打印服务端返回的数据(调试用)
+
+        },
+        error : function() {
+            alert("异常！");
+        }
+    });
+}
+
+
+function login1() {
+    var url = $('#user_phone1').val();
+    console.log(url);
+    $.ajax({
+    //几个参数需要注意一下
+        type: "post",//方法类型
+        dataType: "json",//预期服务器返回的数据类型
+        url: "http://10.112.7.201:8080/loginbypassword/",
+        data: $('#form1').serialize(),
+        
+        success: function (result) {
+            console.log(result);//打印服务端返回的数据(调试用)
+            console.log(JSON.stringify(result));//打印服务端返回的数据(调试用)
+            JsBridge.callHandler(
+            'password_login', { //接受分类，切换activity
+                'user_phone': JSON.stringify(result),
+            },
+        );
+            alert("SUCCESS");
+        },
+
+        error : function() {
+            // alert("异常！");
+        }
+    });
+}
+
+function login2() {
+    $.ajax({
+    //几个参数需要注意一下
+        type: "post",//方法类型
+        dataType: "json",//预期服务器返回的数据类型
+        url: "http://10.112.7.210:8080/sendSms",
+        data: $('#form2 .user_phone').serialize(),
+        success: function (result) {
+            console.log(result);//打印服务端返回的数据(调试用)
+        },
+        error : function() {
+            alert("异常！");
+        }
+    });
+}
+
+
+function login3() {
+
+    console.log($('#form2').serialize());
+    $.ajax({
+    //几个参数需要注意一下
+        type: "post",//方法类型
+        async : true,
+        dataType: "json",//预期服务器返回的数据类型
+        url: "http://10.112.7.210:8080/register",
+        data: $('#form2').serialize(),
+        //data: data,
+        success: function (result) {
+            console.log(result);//打印服务端返回的数据(调试用)
+        },
+        error : function() {
+            alert("异常！");
+        }
+    });
+}
