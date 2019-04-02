@@ -1,15 +1,6 @@
 $(document).ready(function () {
 
-    // 轮播图加载
-    var swiper = new Swiper('.swiper-container', {
-        pagination: {
-            el: '.swiper-pagination',
-            dynamicBullets: true,
-        },
-        autoplay: {
-            delay: 2000,
-        },
-    });
+    
 
     // 异步请求数据
 
@@ -18,138 +9,97 @@ $(document).ready(function () {
     */
 
     //获取轮播
-    // $.ajax({
-    //     type: GET,
-    //     url: '',
-    //     // context: $('#home-book-list'),
-    //     async: false,
-    //     dataType: JSON,
-    //     data: {
+    $.ajax({
+        type: 'GET',
+        url: '../src/js/test/carousel.json',
+        // url: 'http://10.28.129.193:8080/QingzaoReading/carousel',
+        // context: $('#home-book-list'),
+        async: false,
+        dataType: 'JSON',
+        data: {
 
-    //     },
-    //     success: function (res) {
-    //         console.log(res);
-    //         //执行页面渲染
-    //         // ...
-    //     },
-    //     error: function (res) {
-    //         console.log(res);
-    //         //执行页面刷新提示让用户刷新
-    //     }
+        },
+        success: function (res) {
+            console.log(res);
+            //执行页面渲染
+            // ...
+            swiperRender(res)
 
-    // })
+            // 轮播图加载
+            var swiper = new Swiper('.swiper-container', {
+                pagination: {
+                    el: '.swiper-pagination',
+                    dynamicBullets: true,
+                },
+                autoplay: {
+                    delay: 2000,
+                },
+            });
+        },
+        error: function (res) {
+            console.log(res);
+            //执行页面刷新提示让用户刷新
+        }
+
+    })
 
     // 获取推荐书籍
-    // $.ajax({
-    //     type: GET,
-    //     url: '',
-    //     // context: $('#home-book-list'),
-    //     async: false,
-    //     dataType: JSON,
-    //     data: {
+    $.ajax({
+        type: 'GET',
+        url:'../src/js/test/bookrecommend.json',
+        // url: 'http://10.28.129.193:8080/QingzaoReading/bookrecommend',
+        // context: $('#home-book-list'),
+        async: false,
+        dataType: 'JSON',
+        data: {
 
-    //     },
-    //     success: function (res) {
-    //         console.log(res);
-    //         //执行页面渲染
-    //         // ...
-    //     },
-    //     error: function (res) {
-    //         console.log(res);
-    //         //执行页面刷新提示让用户刷新
-    //     }
+        },
+        success: function (res) {
+            console.log(res);
+            //执行页面渲染
+            // ...
+            
+            recomRender(res)
+        },
+        error: function (res) {
+            console.log(res);
+            //执行页面刷新提示让用户刷新
+        }
 
-    // })
-
-    // 异步请求数据
-    // 获取图书列表
-    // $.ajax({
-    //     type:GET,
-    //     url:'',
-    //     context:$('#home-book-list'),
-    //     async:false,
-    //     dataType:JSON,
-    //     data:{
-
-    //     },
-    //     success:function(res){
-    //         console.log(res);
-    //         //执行页面渲染
-    //         // ...
-    //     },
-    //     error:function(res){
-    //         console.log(res);
-    //         //执行页面刷新提示让用户刷新
-    //     }
-
-
-    // })
-
-    //获取推荐书籍
-    //    $.ajax({
-    //        type: GET,
-    //        url: '',
-    //        context: $('#home-book-list'),
-    //        async: false,
-    //        dataType: JSON,
-    //        data: {
-
-    //        },
-    //        success: function (res) {
-    //            console.log(res);
-    //            //执行页面渲染
-    //            // ...
-    //        },
-    //        error: function (res) {
-    //            console.log(res);
-    //            //执行页面刷新提示让用户刷新
-    //        }
-
-    //    })
-
-    recomRender()
-    function recomRender(){
-        var recom = [
-            {
-                'video_url':'../src/img/micky.png',
-                'url':'book.html',
-                'name':'米老鼠1'
-            },
-            {
-                'video_url':'../src/img/micky.png',
-                'url':'book.html',
-                'name':'米老鼠2'
-            },
-            {
-                'video_url':'../src/img/micky.png',
-                'url':'book.html',
-                'name':'米老鼠3'
-            },
-            {
-                'video_url':'../src/img/micky.png',
-                'url':'book.html',
-                'name':'米老鼠4'
-            },
-        ]
+    })
     
+
+    function swiperRender(data){
+        var swiperDom = ''
+        for(var d=0;d<data.length;d++){
+            swiperDom += 
+            '<a class="swiper-slide goto-book" bookid="'+data[d]['playing_id']+'">'+
+                '<img src="'+data[d]['picture_url']+'" alt="">'+
+            '</a>'
+        }
+        $('.swiper-wrapper').html(swiperDom)
+
+    }
+
+    //推荐渲染    
+    function recomRender(data){        
         //渲染推荐列表
-        function recommendList(recomList, recomLength, wrapper){
+        function recommendList(data){
             var recommendDom = ''        
     
-            for(var re=0; re<recomLength; re++){
+            for(var re=0; re<data.length; re++){
                 recommendDom +=
-                '<div class="recom-book" url=' + recomList[re]["url"] + '>'+
-                    '<img src="' + recomList[re]["video_url"] + '" alt="">'+
-                    '<p>'+ recomList[re]["name"] +'</p>'+
+                '<div class="recom-book" url=' + data[re]["video_id"] + '>'+
+                    '<img src="' + data[re]["video_cover_url"] + '" alt="">'+
+                    '<p>'+ data[re]["name"] +'</p>'+
                 '</div>'
             }
-            $(wrapper).html(recommendDom);
-    
+            $('.recom-books').html(recommendDom);    
     
         }
         
         //渲染
-        recommendList(recom,recom.length,'.recom-books')
+        recommendList(data)
 
         //书籍跳转
         $('.recom-book').on('click',function(){
@@ -166,162 +116,80 @@ $(document).ready(function () {
                 }
             );
         })
-    }
-
-    
-
-
-    // 获取图书列表
-    // $.ajax({
-    //     type:GET,
-    //     url:'',
-    //     context:$('#home-book-list'),
-    //     async:false,
-    //     dataType:JSON,
-    //     data:{
-
-    //     },
-    //     success:function(res){
-    //         console.log(res);
-    //         //执行页面渲染
-    //         // ...
-    //     },
-    //     error:function(res){
-    //         console.log(res);
-    //         //执行页面刷新提示让用户刷新
-    //     }
-
-
-    // })
-
-
-    // 推荐图书渲染
-    recomRender()
-    function recomRender(){
-        var recom = [
-            {
-                'video_url':'../src/img/micky.png',
-                'url':'book.html',
-                'name':'米老鼠1'
-            },
-            {
-                'video_url':'../src/img/micky.png',
-                'url':'book.html',
-                'name':'米老鼠2'
-            },
-            {
-                'video_url':'../src/img/micky.png',
-                'url':'book.html',
-                'name':'米老鼠3'
-            },
-            {
-                'video_url':'../src/img/micky.png',
-                'url':'book.html',
-                'name':'米老鼠4'
-            },
-        ]
-    
-        //渲染推荐列表
-        function recommendList(recomList, recomLength, wrapper){
-            var recommendDom = ''        
-    
-            for(var re=0; re<recomLength; re++){
-                recommendDom +=
-                '<div class="recom-book goto-book" bookid=' + recomList[re]["url"] + '>'+
-                    '<img src="' + recomList[re]["video_url"] + '" alt="">'+
-                    '<p>'+ recomList[re]["name"] +'</p>'+
-                '</div>'
-            }
-            $(wrapper).html(recommendDom);
-    
-    
-        }
-        
-        //渲染
-        recommendList(recom,recom.length,'.recom-books')
-            
-        //【跳转到书籍】 param:bookid
-        // go to book.html
-        $('.goto-book').on('click',function(){
-            //
-            var bookid = $(this).attr("bookid")
-            console.log('go to book.html book id is '+$(this).attr("bookid"))
-            // event.preventDefault()
-            JsBridge.callHandler(
-                'goToBook', { //接受分类，切换activity
-                    'bookid': bookid
-                },
-                function (responseData) {
-                    document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
-                }
-            );
-        })
     }    
 
 
+    // 获取图书列表
+    $.ajax({
+        type:'GET',
+        url:'../src/js/test/booklist.json',
+        // url:'http://10.28.129.193:8080/QingzaoReading/booklist',
+        context:$('#home-book-list'),
+        async:false,
+        dataType:'JSON',
+        data:{
 
+        },
+        success:function(res){
+            console.log(res);
+            //执行页面渲染
+            // ...
+                // 图书列表渲染
+            var bookListHome = new Vue({
+                el: '#home-book-list',
+                data: {
+                    booklist:res
+                    // booklist: [
+                    //             {
+                    //                 "id": "1",
+                    //                 "cover": "../src/img/b1.png",
+                    //                 "title": "青鸟",
+                    //                 "short": "当孩子想知道幸福是什么，不妨听听《青鸟》的答案。",
+                    //                 "type": "儿童文学",
+                    //                 "playtimes": "2309",
+                    //                 "publishdate": "2019-03-06",
+                    //                 "grade": "1~3",
+                    //                 "url": "book.html"
+                    //             },
+                    //             {
+                    //                 "id": "2",
+                    //                 "cover": "../src/img/b1.png",
+                    //                 "title": "青鸟2",
+                    //                 "short": "当孩子想知道幸福是什么，不妨听听《青鸟》的答案。",
+                    //                 "type": "儿童文学",
+                    //                 "playtimes": "2309",
+                    //                 "publishdate": "2019-03-06",
+                    //                 "grade": "1~3",
+                    //                 "url": "book.html"
+                    //             },
+                    //             {
+                    //                 "id": "3",
+                    //                 "cover": "../src/img/b1.png",
+                    //                 "title": "青鸟3",
+                    //                 "short": "当孩子想知道幸福是什么，不妨听听《青鸟》的答案。",
+                    //                 "type": "儿童文学",
+                    //                 "playtimes": "2309",
+                    //                 "publishdate": "2019-03-06",
+                    //                 "grade": "1~3",
+                    //                 "url": "book.html"
+                    //             }
+                    //         ]
+                },
+                created: function () {
+                console.log('created 钩子执行...');           
+                },
 
-    // 图书列表渲染
-    var bookListHome = new Vue({
-        el: '#home-book-list',
-        data: {
-            booklist: [
-                          {
-                              "id": "1",
-                              "cover": "../src/img/b1.png",
-                              "title": "青鸟",
-                              "short": "当孩子想知道幸福是什么，不妨听听《青鸟》的答案。",
-                              "type": "儿童文学",
-                              "playtimes": "2309",
-                              "publishdate": "2019-03-06",
-                              "grade": "1~3",
-                              "url": "book.html"
-                          },
-                          {
-                              "id": "2",
-                              "cover": "../src/img/b1.png",
-                              "title": "青鸟2",
-                              "short": "当孩子想知道幸福是什么，不妨听听《青鸟》的答案。",
-                              "type": "儿童文学",
-                              "playtimes": "2309",
-                              "publishdate": "2019-03-06",
-                              "grade": "1~3",
-                              "url": "book.html"
-                          },
-                          {
-                              "id": "3",
-                              "cover": "../src/img/b1.png",
-                              "title": "青鸟3",
-                              "short": "当孩子想知道幸福是什么，不妨听听《青鸟》的答案。",
-                              "type": "儿童文学",
-                              "playtimes": "2309",
-                              "publishdate": "2019-03-06",
-                              "grade": "1~3",
-                              "url": "book.html"
-                          }
-                      ]
+            })
         },
-        created: function () {
-           console.log('created 钩子执行...');
-//            //异步请求渲染数据
-//            var url = "../src/js/test/booklist.json"
-//            axios.get(url, {
-//                name: ""
-//            }).then(function (res) {
-//                var resData = res.data;
-//                // if (resData.status == "0") { //0表示成功，1表示失败
-//                //     console.log(resData.message);
-//                // } else {
-//                //     console.log(resData.message);
-//                // }
-//                this.booklist = resData
-//                bookListHome.$data.booklist = resData
-//            });
-            // 点击图书块传数据
-            
-        },
+        error:function(res){
+            console.log(res);
+            //执行页面刷新提示让用户刷新
+        }
+
 
     })
+
+
 
     //Java acitivity跳转 传送数据
     

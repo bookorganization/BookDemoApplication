@@ -2,19 +2,21 @@
     {
         "video_id": "1",
         "video_cover_url": "../src/img/b1.png",
-        "name": "青鸟",        
- 
+        "name": "青鸟1" 
     },
     {
         "video_id": "1",
         "video_cover_url": "../src/img/b1.png",
-        "name": "青鸟",        
-  
+        "name": "青鸟2"  
     },
     {
         "video_id": "1",
         "video_cover_url": "../src/img/b1.png",
-        "name": "青鸟",        
-    
+        "name": "青鸟3"   
+    },
+    {
+        "video_id": "1",
+        "video_cover_url": "../src/img/b1.png",
+        "name": "青鸟4"   
     }
 ]

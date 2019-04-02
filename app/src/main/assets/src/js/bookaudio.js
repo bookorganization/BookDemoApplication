@@ -6,12 +6,12 @@ console.log(document.cookie)
 MusicAudioPlayer('audio-my', audioUrl)
 $('.audio-img-cover').css('background',"url("+ audioCover+")  no-repeat center")
 
-// ????
+// back to book.html
 $('.audio-back-bar').on("click",function(){
     window.history.go(-1);
 })
 
-//??Cookie
+// get Cookie
 function getCookie(cname)
 {
   var name = cname + "=";

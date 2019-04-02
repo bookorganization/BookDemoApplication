@@ -44,15 +44,17 @@ $(document).ready(function(){
     ]
 
     // 异步请求
-    // 异步请求书籍信息
     $.ajax({
-        type: 'GET',
+        // type: 'post',
+        type: 'get',
+        // url: 'http://10.28.129.193:8080/QingzaoReading/bookbyid',
         url: '../src/js/test/onebook.json',
-        context: $('#home-book-list'),
+        // context: $('#home-book-list'),
         async: false,
         dataType: 'JSON',
         data: {
-
+            "video_id":1,
+            "user_id":1
         },
         success: function (res) {
             console.log(res);
