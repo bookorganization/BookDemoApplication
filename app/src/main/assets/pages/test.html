@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    手机号：<input type="text" class="" value="" placeholder="" id="input1" name=""onblur="check()">
+    
+</body>
+<script>
+    function check()
+    {
+        var phone=document.getElementById("input1").value;
+        var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+        if (!myreg.test(phone)) {
+            alert("手机号格式不对!")
+        } else {
+            console.log('success')
+        }
+    }
+
+</script>
+</html>
