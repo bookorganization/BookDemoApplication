@@ -81,14 +81,14 @@ $(document).ready(function(){
     //渲染视频播放器和详情
     function randerPlayAndDetail(data){
         console.log(data)
-        $('.book-info-detail').html(data.introduction)
-        $('.teacher-name').html(data.lecturer_name)
-        $('.tid-text').html(data.lecturer_introduction)
-        $('.br-name').html('夏洛的网')
-        $('.brd-text').html(data.short_introduction)
-        $('.tid-img img').attr('src','../src/img/teacher.png')
+        $('.book-info-detail').html(data.introduction)//本书介绍
+        $('.teacher-name').html(data.lecturer_name)//老师名
+        $('.tid-text').html(data.lecturer_introduction)//老师介绍
+        $('.br-name').html('夏洛的网')//书籍名
+        $('.brd-text').html(data.short_introduction)//书籍短介绍
+        $('.tid-img img').attr('src','../src/img/teacher.png')//老师封面
         // console.log(data.lecturer_head_portrait_url)
-        $('.brd-img img').attr('src','../src/img/b1.png')
+        // $('.brd-img img').attr('src','../src/img/b1.png')
         var videourl = data.video_url;
         // 播放视频
         const dp = new DPlayer({
@@ -99,18 +99,9 @@ $(document).ready(function(){
                 // thumbnails: '../src/img/c.png'
             },
         });
-        //图书推荐跳转
-        $('.brd-img').html('<img src="../src/img/b1.png" alt="" class="recom-book">')
-        $('.recom-book').on('click',function () {
-            var url = $(this).attr("url")
-            console.log('xixi')
-            // event.preventDefault()
-            JsBridge.callHandler(
-                'goToBook', { //接受分类，切换activity
-                    'bookid': url
-                }
-            );
-        })
+        //图书封面
+        $('.brd-img').html('<img src="../src/img/b1.png" alt="" class="recom-book" url='+1+'>')
+      
     }
 
     //存入音频接口需要数据
@@ -252,7 +243,19 @@ $(document).ready(function(){
     //     },
     // });
 
-
+//推荐图书跳转    
+$('.recom-book').on('click', function(){
+    var url = $(this).attr('url')
+    console.log('go to book.html book id is '+ url)    
+    JsBridge.callHandler(
+        'goToBook', {
+            'bookid': url
+        },
+        function (responseData) {
+            document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
+        }
+    );
+})
 
 
 
