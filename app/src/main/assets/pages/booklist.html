@@ -8,10 +8,16 @@
 
     <link rel="stylesheet" href="../src/css/main.css">
     <link rel="stylesheet" href="../src/css/home.css">
-    <script src="../src/modules/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../src/modules/jquery/jquery-3.3.1.min.js"></script>   
 
 </head>
 <body>
+
+    <div id="search-zone">
+        <input type="text" placeholder="请输入书名或作者" class="search-zone-input">
+        <img src="../src/img/sousuoBig.png" alt="" class="search-zone-button">
+
+    </div>
 
     <div class="search-book-result">
        <div class="result-order">排序</div> 
@@ -31,13 +37,12 @@
         ></book-one>     
     </div>
 
-    <div class="hidden-data" classType='0'></div>
+    <div class="hidden-data" tagvalue='recent' type=''></div>
 
     
     <script src="../src/modules/vue/vue.min.js"></script>
-
+    <script src="../src/js/Jsbridge.js"></script>
     <script src="../src/js/bookListComponent.js"></script>
-    <script src="../src/js/booklist.js"></script>
 
     <script>
         function connectWebViewJavascriptBridge(callback) {
@@ -64,11 +69,23 @@
                 if (responseCallback) {
                     // console.log('JS responding with', data);
                     responseCallback(message);
-                    $('.hidden-data').attr('classType', message)
+                    $('.hidden-data').attr('tagvalue', message)
+                    $('.hidden-data').attr('type', '')
                 }
-            });
+            })
+            bridge.registerHandler('javaSenderName', function(data, responseCallback) {
+                
+                console.log("JS Echo called with:", data)
+                // js返回数据给Objc
+                responseCallback('have got data')
+                data = JSON.parse(data)
+                $('.hidden-data').attr('tagvalue', data.tagValue)
+                $('.hidden-data').attr('type', data.type)
+            })
+
         })
-    </script>
+    </script>    
+    <script src="../src/js/booklist.js"></script>
     
 </body>
 </html>

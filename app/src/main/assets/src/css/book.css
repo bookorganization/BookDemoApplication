@@ -1,3 +1,6 @@
+#dplayer{
+    height: 210px;
+}
 .book-bar{
     display: flex;
     justify-content: space-around;

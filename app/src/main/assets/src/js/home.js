@@ -108,8 +108,8 @@ $(document).ready(function () {
             console.log($(this).attr("url"))
             // event.preventDefault()
             JsBridge.callHandler(
-                'changeClass', { //接受分类，切换activity
-                    'Address': url
+                'goToBook', { //接受分类，切换activity
+                    'bookid': url
                 },
                 function (responseData) {
                     document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData

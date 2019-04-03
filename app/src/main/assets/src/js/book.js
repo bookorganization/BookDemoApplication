@@ -1,4 +1,8 @@
 $(document).ready(function(){
+    var currentVideoId = $('#hidden-data').attr('userid')
+    console.log(currentVideoId)
+  
+
     //test
     var AJAXonebookdata = {
         "video_id": "1",
@@ -47,13 +51,13 @@ $(document).ready(function(){
     $.ajax({
         // type: 'post',
         type: 'get',
-        // url: 'http://10.28.129.193:8080/QingzaoReading/bookbyid',
-        url: '../src/js/test/onebook.json',
+        url: 'http://10.112.7.201:8080/bookbyid',
+        // url: '../src/js/test/onebook.json',
         // context: $('#home-book-list'),
         async: false,
         dataType: 'JSON',
         data: {
-            "video_id":1,
+            "video_id":currentVideoId,
             "user_id":1
         },
         success: function (res) {
@@ -61,13 +65,13 @@ $(document).ready(function(){
             //执行页面渲染
             var data = res
             randerPlayAndDetail(data)
-            audioDataSave(data)
+            audioDataSave(data)            
             // ...
         },
         error: function (res) {
             console.log(res)
-            randerPlayAndDetail(AJAXonebookdata)
-            audioDataSave(AJAXonebookdata)
+            // randerPlayAndDetail(AJAXonebookdata)
+            // audioDataSave(AJAXonebookdata)
             //执行页面刷新提示让用户刷新
         }
 
@@ -81,8 +85,10 @@ $(document).ready(function(){
         $('.teacher-name').html(data.lecturer_name)
         $('.tid-text').html(data.lecturer_introduction)
         $('.br-name').html('夏洛的网')
-        $('.brd-text').html(data.lecturer_introduction)
-        $('.tid-img img').attr('src',data.lecturer_head_portrait_url)
+        $('.brd-text').html(data.short_introduction)
+        $('.tid-img img').attr('src','../src/img/teacher.png')
+        // console.log(data.lecturer_head_portrait_url)
+        $('.brd-img img').attr('src','../src/img/b1.png')
         var videourl = data.video_url;
         // 播放视频
         const dp = new DPlayer({
@@ -93,6 +99,18 @@ $(document).ready(function(){
                 // thumbnails: '../src/img/c.png'
             },
         });
+        //图书推荐跳转
+        $('.brd-img').html('<img src="../src/img/b1.png" alt="" class="recom-book">')
+        $('.recom-book').on('click',function () {
+            var url = $(this).attr("url")
+            console.log('xixi')
+            // event.preventDefault()
+            JsBridge.callHandler(
+                'goToBook', { //接受分类，切换activity
+                    'bookid': url
+                }
+            );
+        })
     }
 
     //存入音频接口需要数据
@@ -105,31 +123,40 @@ $(document).ready(function(){
         document.cookie = "audiocover="+audioCover+';'
     }
 
+    
+
+        
+    
+
+    
+
 
     //异步请求评论
-    $.ajax({
-        type: 'GET',
-        url: '../src/js/test/comments2.json',
-        context: $('#comment-list'),
-        async: false,
-        dataType: 'JSON',
-        data: {
+    // $.ajax({
+    //     type: 'GET',
+    //     url: '../src/js/test/comments2.json',
+    //     context: $('#comment-list'),
+    //     async: false,
+    //     dataType: 'JSON',
+    //     data: {
 
-        },
-        success: function (res) {
-            console.log(res);
-            //执行页面渲染
-            var data = res
-            renderComments(data)
-            // ...
-        },
-        error: function (res) {
-            console.log(res)
-            //执行页面刷新提示让用户刷新
-            var data = AJAXcomments2data
-            renderComments(data)
-        }
-    })
+    //     },
+    //     success: function (res) {
+    //         console.log(res);
+    //         //执行页面渲染
+    //         var data = res
+    //         renderComments(data)
+    //         // ...
+    //     },
+    //     error: function (res) {
+    //         console.log(res)
+    //         //执行页面刷新提示让用户刷新
+    //         var data = AJAXcomments2data
+    //         renderComments(data)
+    //     }
+    // })
+    renderComments(AJAXcomments2data)
+
     
 
     //渲染评论
@@ -163,11 +190,7 @@ $(document).ready(function(){
 
         //添加到dom中
         $('.comment-list').html(commentsDom)
-    }
-
-
-
-    
+    }    
 
     // 切换选项卡
     var bookApp = new Vue({

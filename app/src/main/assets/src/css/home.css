@@ -17,6 +17,10 @@ html, body {
 } */
 
 /* 轮播图 */
+#swiper-home .swiper-slide img{
+    height: 180px;
+    width: auto;
+}
 .swiper-container {
     width: 100%;
     /* height: 100%; */
