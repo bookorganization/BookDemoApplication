@@ -43,15 +43,7 @@ html{
 	justify-content: space-around;
 	flex-wrap: wrap;
 }
-.img_left{
-	height:27%;
-	width:27%;
-}
-.img_center{
-	height:27%;
-	width:27%;
-}
-.img_right{
+.img_style{
 	height:27%;
 	width:27%;
 }

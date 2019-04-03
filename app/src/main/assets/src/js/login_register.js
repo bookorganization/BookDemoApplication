@@ -1,3 +1,33 @@
+function check(){
+    var phone=document.getElementById("user_phone").value;
+    var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+    if (!myreg.test(phone)) {
+        alert('手机号不正确')
+    } else {
+        
+    }
+}
+
+function check1(){
+    var phone=document.getElementById("user_phone1").value;
+    var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+    if (!myreg.test(phone)) {
+        alert('手机号不正确')
+    } else {
+        
+    }
+}
+
+function check2(){
+    var phone=document.getElementById("user_phone2").value;
+    var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+    if (!myreg.test(phone)) {
+        alert('手机号不正确')
+    } else {
+        
+    }
+}
+
 function checkout(demo_id){
     
     var demo_login = document.getElementById("login_text");
@@ -64,13 +94,13 @@ function hideShowPsw1(){
     }
 }
 
-
-function login() {
+//用验证码登录
+function login_Sms() {
     $.ajax({
     //几个参数需要注意一下
         type: "post",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: "http://10.112.7.210:8080/sendSms",
+        url: "http://10.112.7.201:8080/sendSms",
         data: $('#form .user_phone').serialize(),
         success: function (result) {
             console.log(result);//打印服务端返回的数据(调试用)
@@ -82,12 +112,13 @@ function login() {
     });
 }
 
-function login0() {
+//用验证码登录
+function login_bySms() {
     $.ajax({
     //几个参数需要注意一下
         type: "post",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: "http://10.112.7.210:8080/register",
+        url: "http://10.112.7.201:8080/register",
         data: $('#form').serialize(),
         success: function (result) {
             console.log(result);//打印服务端返回的数据(调试用)
@@ -99,8 +130,8 @@ function login0() {
     });
 }
 
-
-function login1() {
+//用密码登录
+function login_bypassword() {
     var url = $('#user_phone1').val();
     console.log(url);
     $.ajax({
@@ -127,12 +158,13 @@ function login1() {
     });
 }
 
-function login2() {
+//注册界面发送验证码
+function register_Sms() {
     $.ajax({
     //几个参数需要注意一下
         type: "post",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: "http://10.112.7.210:8080/sendSms",
+        url: "http://10.112.7.201:8080/sendSms",
         data: $('#form2 .user_phone').serialize(),
         success: function (result) {
             console.log(result);//打印服务端返回的数据(调试用)
@@ -144,7 +176,8 @@ function login2() {
 }
 
 
-function login3() {
+//注册界面登录
+function register_login() {
 
     console.log($('#form2').serialize());
     $.ajax({
@@ -152,7 +185,7 @@ function login3() {
         type: "post",//方法类型
         async : true,
         dataType: "json",//预期服务器返回的数据类型
-        url: "http://10.112.7.210:8080/register",
+        url: "http://10.112.7.201:8080/register",
         data: $('#form2').serialize(),
         //data: data,
         success: function (result) {
