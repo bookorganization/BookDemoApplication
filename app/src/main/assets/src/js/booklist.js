@@ -3,11 +3,11 @@ var videoClassType = $('.hidden-data').attr('tagvalue')
 var searchType = $('.hidden-data').attr('type')
 var listurl = 'http://10.112.7.201:8080/booklistbytype'
 var sendData = {}
-if(videoClassType == 'recommend' && searchType == ''){    
+if(videoClassType == 'recommend' && searchType == 'other'){    
     listurl = 'http://10.112.7.201:8080/bookrecommendmore'//获取推荐更多    
-}else if(videoClassType == 'recent' && searchType == ''){
+}else if(videoClassType == 'recent' && searchType == 'other'){
     listurl = 'http://10.112.7.201:8080/bookrecentmore'//获取最近更多    
-}else if((searchType == ''&&videoClassType != 'recommend'&&videoClassType != 'recent') || searchType == 'type'){
+}else if(searchType == 'type'){
     listurl = 'http://10.112.7.201:8080/booklistbytype'//根据分类id获取列表
     sendData.video_type = videoClassType
 }else if(searchType == 'teacher'){

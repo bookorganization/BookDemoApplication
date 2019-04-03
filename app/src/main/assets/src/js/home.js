@@ -197,12 +197,16 @@ $(document).ready(function () {
     //go to boolist.html
     $('.class-tag').on('click',function(){
         //
-        var classTag = $(this).attr("classTag")
-        console.log('go to boolist.html,class tag is '+$(this).attr("classTag"))
+        var tagValue = $(this).attr("tagvalue")
+        var type = $(this).attr("type")
+        var sendObj = {}
+        sendObj.tagValue = tagValue
+        sendObj.type = type
+        console.log('go to boolist.html,class tag type is ['+$(this).attr("tagvalue")+'],tag value id ['+$(this).attr("type")+']')
         // event.preventDefault()
         JsBridge.callHandler(
             'changeClass', { //接受分类，切换activity
-                'classTag': classTag
+                'classTag': JSON.stringify(sendObj)
             },
             function (responseData) {
                 document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
