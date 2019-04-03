@@ -44,8 +44,7 @@ $.ajax({
         console.log(res);
         //执行页面渲染
         // ...
-        bookListClass.$data.booklist = res
-            
+        bookListClass.$data.booklist = res        
         
     },
     error:function(res){
