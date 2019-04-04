@@ -7,9 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    手机号：<input type="text" class="" value="" placeholder="" id="input1" name=""onblur="check()">
-    
+    <form id='form1' onsubmit="return false" action="##" method="post">
+        手机号：<input type="text" class="" value="" placeholder="请输入手机号" id="input1" name="input1"onblur="check()">
+        <input type="submit" value="提交" id="input2" name="input2" onclick="click1()">
+        <!-- <button type="button" class=""><p class="text" onclick="click1()">提交</p></button> -->
+    </form>
 </body>
+<script src="../src/modules/jquery/jquery-3.3.1.min.js"></script>
 <script>
     function check()
     {
@@ -20,6 +24,24 @@
         } else {
             console.log('success')
         }
+    }
+    function click1() {
+        console.log($('#form1').serialize());
+        // $.ajax({
+        // //几个参数需要注意一下
+        //     type: "post",//方法类型
+        //     async : true,
+        //     dataType: "json",//预期服务器返回的数据类型
+        //     url: "",
+        //     data: $('#form2').serialize(),
+        //     //data: data,
+        //     success: function (result) {
+        //         console.log(result);//打印服务端返回的数据(调试用)
+        //     },
+        //     error : function() {
+        //         alert("异常！");
+        //     }
+        // });
     }
 
 </script>
