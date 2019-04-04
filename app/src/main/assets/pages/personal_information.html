@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,18 +8,20 @@
     <title>my_information</title>
     <link rel="stylesheet" href="../src/css/personal_information.css">
 </head>
+
 <body>
     <div class="background">
         <div class="intro">
-            <img  class="my_photo" id='user_head'>
+            <img class="my_photo" id='user_head'>
             <p class="user_info"><label class="userinfo" id="user_name"></label></p>
             <p class="user_info"><label class="userinfo" id="user_id"></label></p>
+            <div class="share">分享</div>
         </div>
     </div>
     <div class="content">
         <div class="part1">
             <p class="content_style">昵称</p>
-            
+
         </div>
         <!-- <hr> -->
         <div class="part1">
@@ -33,22 +36,41 @@
             <p class="content_style">所属年级</p>
         </div>
     </div>
+    <div id="qrcode" style="display:none"></div>
+
     <script src="../src/modules/jquery/jquery-3.3.1.min.js"></script>
     <script>
-            var user={
-                    "result":true,
-                    "user_vip_expiration_time":1554028433000,
-                    "user_sex":"男",
-                    "user_birthday":832089600000,
-                    "user_name":"苏子棚",
-                    "user_is_it_vip":"1",
-                    "user_student_id":100001,
-                    "user_head_portrait_url":"http://szpstore.oss-cn-beijing.aliyuncs.com/szp.jpg?Expires=1554214940&OSSAccessKeyId=LTAINIcvCcsIqETW&Signature=T25xzgVlZiyvc7weKvdR8Y2S99U%3D",
-                    "user_grade":null
-                }
-            $('#user_name').html(user.user_name)
-            $('#user_id').html('学号:'+user.user_student_id)
-            $('#user_head').attr('src',user.user_head_portrait_url)
-     </script>
+        var user = {
+            "result": true,
+            "user_vip_expiration_time": 1554028433000,
+            "user_sex": "男",
+            "user_birthday": 832089600000,
+            "user_name": "苏子棚",
+            "user_is_it_vip": "1",
+            "user_student_id": 100001,
+            "user_head_portrait_url": "http://szpstore.oss-cn-beijing.aliyuncs.com/szp.jpg?Expires=1554214940&OSSAccessKeyId=LTAINIcvCcsIqETW&Signature=T25xzgVlZiyvc7weKvdR8Y2S99U%3D",
+            "user_grade": null
+        }
+        $('#user_name').html(user.user_name)
+        $('#user_id').html('学号:' + user.user_student_id)
+        $('#user_head').attr('src', user.user_head_portrait_url)
+    </script>
+    <script src="../src/modules/qrcode/qrcode.min.js"></script>
+    <script>
+        $('.share').on('click',function(){
+            var userid = '1'
+            // qrcode
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: "http://10.112.7.201:8080/invite?id="+userid,
+                width: 128,
+                height: 128,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.L
+            });
+            $('#qrcode').show()
+        })
+    </script>
 </body>
+
 </html>

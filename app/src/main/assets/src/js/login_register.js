@@ -118,7 +118,7 @@ function login_bySms() {
     //几个参数需要注意一下
         type: "post",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: "http://10.112.7.201:8080/register",
+        url: "http://10.112.7.201:8080/loginbyverifycode",
         data: $('#form').serialize(),
         success: function (result) {
             console.log(result);//打印服务端返回的数据(调试用)

@@ -122,31 +122,30 @@ $(document).ready(function(){
     
 
 
-    //异步请求评论
-    // $.ajax({
-    //     type: 'GET',
-    //     url: '../src/js/test/comments2.json',
-    //     context: $('#comment-list'),
-    //     async: false,
-    //     dataType: 'JSON',
-    //     data: {
-
-    //     },
-    //     success: function (res) {
-    //         console.log(res);
-    //         //执行页面渲染
-    //         var data = res
-    //         renderComments(data)
-    //         // ...
-    //     },
-    //     error: function (res) {
-    //         console.log(res)
-    //         //执行页面刷新提示让用户刷新
-    //         var data = AJAXcomments2data
-    //         renderComments(data)
-    //     }
-    // })
-    renderComments(AJAXcomments2data)
+    //异步请求评论    
+    $.ajax({    
+        url: "http://10.112.7.201:8080/getcommentbyid",
+        async: true,
+        type: "post",
+        dataType: "json",
+        data: {
+            "video_id":currentVideoId
+        },
+        success: function (res) {
+            console.log(res);
+            //执行页面渲染
+            var data = res
+            renderComments(data)
+            // ...
+        },
+        error: function (res) {
+            console.log(res)
+            //执行页面刷新提示让用户刷新
+            // var data = AJAXcomments2data
+            // renderComments(data)
+        }
+    })
+    // renderComments(AJAXcomments2data)
 
     
 
@@ -160,9 +159,9 @@ $(document).ready(function(){
                 '<div class="comment-one">'+
                     '<div class="comment-user">'+
                         '<div class="comment-user-logo">'+
-                            '<img src="'+ data[l].user_img_url +'" alt="">'+
+                            '<img src="'+ data[l].user_head_portrait_url +'" alt="">'+
                             '<div class="comment-user-name">'+
-                                data[l].username +
+                                data[l].user_name +
                                 '<div class="comment-user-grade">'+
                                     data[l].user_grade +
                                 '</div>'+
@@ -174,7 +173,7 @@ $(document).ready(function(){
                     '</div>'+
                 '</div>'+
                 '<div class="comment-text">'+
-                    data[l].content +
+                    data[l].cotent +
                 '</div>'+
                 '<div class="comment-line"></div>'
         }
