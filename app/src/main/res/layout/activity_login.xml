@@ -4,11 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ClassesActivity">
-<com.github.lzyzsd.jsbridge.BridgeWebView
-    android:id="@+id/classes_webview"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-</com.github.lzyzsd.jsbridge.BridgeWebView>
+    tools:context=".BookActivity">
+    <com.github.lzyzsd.jsbridge.BridgeWebView
+        android:id="@+id/login_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></com.github.lzyzsd.jsbridge.BridgeWebView>
 </android.support.constraint.ConstraintLayout>

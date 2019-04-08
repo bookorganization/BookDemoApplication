@@ -146,12 +146,11 @@
 
 
     <script src="../src/modules/dplayer/DPlayer.min.js"></script>
-    <script src="../src/js/Jsbridge.js"></script>
     <script src="../src/modules/vue/vue.min.js"></script>
     <script src="../src/modules/qrcode/qrcode.min.js"></script>
     <script src="../src/modules/mobiletouch/touchwipe.js"></script>
 </body>
-<script>
+<script defer=true>
 
         function connectWebViewJavascriptBridge(callback) {
             if (window.WebViewJavascriptBridge) {
@@ -168,17 +167,33 @@
         }
 
         connectWebViewJavascriptBridge(function(bridge) {
-            bridge.init(function(message, responseCallback) {   
+            bridge.init(function(message, responseCallback) {
+                console.log('JS got a message', message);
+                    var data = {
+                        'Javascript Responds': '测试中文!'
+                    };
                 if (responseCallback) {
-                    // console.log('JS responding with', data);
+                    console.log('JS responding with', data)
 
                     responseCallback(message);
-                    $('#hidden-data').attr('userid',message)
+                    console.log(message)
+                    console.log(JSON.parse(message))
+                    message = JSON.parse(message)
+                    console.log(message.bookid)
+                    $('#hidden-data').attr('userid',message.bookid)
+
+                    //引入book.js
+                    ~function() {
+                      var s = document.createElement('script');
+                      s.src = '../src/js/book.js';
+                      document.body.appendChild(s);
+                    }();
+
                 }
             });
-
-       
         })        
-    </script>    
-    <script src="../src/js/book.js"></script>
+    </script>
+
+    <!--<script src="../src/js/Jsbridge.js" defer=true></script>-->
+    <!--<script src="../src/js/book.js" defer=true></script>-->
 </html>
