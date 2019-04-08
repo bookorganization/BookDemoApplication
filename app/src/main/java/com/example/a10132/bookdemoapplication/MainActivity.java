@@ -1,5 +1,6 @@
 package com.example.a10132.bookdemoapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
@@ -31,6 +32,11 @@ import com.github.lzyzsd.jsbridge.BridgeWebViewClient;
 import com.github.lzyzsd.jsbridge.CallBackFunction;
 import com.github.lzyzsd.jsbridge.DefaultHandler;
 import com.google.gson.Gson;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 
 public class MainActivity extends AppCompatActivity{
     private PtrClassicFrameLayout mPtrFrame;
@@ -83,11 +89,18 @@ public class MainActivity extends AppCompatActivity{
         mWebView.setDefaultHandler(new DefaultHandler());
         webSettings.setJavaScriptEnabled(true);//支持js脚本
         webSettings.setDomStorageEnabled(true);////设置DOM Storage缓存，不然插件出不来
+        Intent i = getIntent();
+//        i.getStringExtra("inf");
+//        if(!(i.getStringExtra("inf").equals(null))){
+//            String data = getTxtFileInfo(MainActivity.this);
+//            Toast.makeText(MainActivity.this, data, Toast.LENGTH_LONG).show();
+//        }
+
         mWebView.setWebChromeClient(new WebChromeClient(){
 
         });//用chrome浏览器
         mWebView.loadUrl("file:///android_asset/pages/index.html");
-        mWebView.registerHandler("submitFromWeb", new BridgeHandler() {
+        mWebView.registerHandler("goToBook", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
                 Log.i(TAG, "handler = submitFromWeb, data from web = " + data);
@@ -98,7 +111,7 @@ public class MainActivity extends AppCompatActivity{
             }
 
         });
-        mWebView.registerHandler("changeClass1", new BridgeHandler() {
+        mWebView.registerHandler("changeClass", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
                 Log.i(TAG, "handler = submitFromWeb, data from web = " + data);
@@ -110,14 +123,14 @@ public class MainActivity extends AppCompatActivity{
             }
 
         });
-        mWebView.registerHandler("changeClass2", new BridgeHandler() {
+        mWebView.registerHandler("searchType", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
                 Log.i(TAG, "handler = submitFromWeb, data from web = " + data);
                 //Toast.makeText(MainActivity.this, data, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, ClassesActivity.class);
                 startActivity(intent);
-                function.onCallBack("收到changeClass2");
+                function.onCallBack("收到changeClass");
             }
 
         });
@@ -126,12 +139,34 @@ public class MainActivity extends AppCompatActivity{
 
         //分支合并测试
     }
-
-    public void pickFile() {
-        Intent chooserIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        chooserIntent.setType("image/*");
-        startActivityForResult(chooserIntent, RESULT_CODE);
+    public static String getTxtFileInfo(Context context) {
+        try {
+            // 创建FIle对象
+            File file = new File(context.getFilesDir(), "userinfo.txt");
+            // 创建FileInputStream对象
+            FileInputStream fis = new FileInputStream(file);
+            // 创建BufferedReader对象
+            BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+            // 获取文件中的内容
+            String content = br.readLine();
+            // 创建Map集合
+            // 保存到map集合中
+//            map.put("username", contents[0]);
+//            map.put("password", contents[1]);
+            // 关闭流对象
+            fis.close();
+            br.close();
+            return content;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
+//    public void pickFile() {
+//        Intent chooserIntent = new Intent(Intent.ACTION_GET_CONTENT);
+//        chooserIntent.setType("image/*");
+//        startActivityForResult(chooserIntent, RESULT_CODE);
+//    }
     /**
      * 定义底栏点击事件
      */

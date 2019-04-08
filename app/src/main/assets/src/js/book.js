@@ -245,25 +245,21 @@ $(document).ready(function(){
 //推荐图书跳转    
 $('.recom-book').on('click', function(){
     var url = $(this).attr('url')
-    console.log('go to book.html book id is '+ url)    
-    JsBridge.callHandler(
-        'goToBook', {
-            'bookid': url
-        },
-        function (responseData) {
-            document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
-        }
-    );
+    console.log('go to book.html book id is '+ url)
+    connectWebViewJavascriptBridge(function(bridge) {
+      bridge.callHandler(
+          'goToBook', {
+              'bookid': url
+          },
+          function (responseData) {
+              document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
+          }
+      );
+    })
+
+
+
 })
-
-
-
-
-
-
-
-
-
 
     
 
