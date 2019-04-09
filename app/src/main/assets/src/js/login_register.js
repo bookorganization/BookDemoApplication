@@ -94,7 +94,7 @@ function hideShowPsw1(){
     }
 }
 
-//用验证码登录
+//登录发送验证码
 function login_Sms() {
     $.ajax({
     //几个参数需要注意一下
@@ -123,6 +123,12 @@ function login_bySms() {
         success: function (result) {
             console.log(result);//打印服务端返回的数据(调试用)
 
+            JsBridge.callHandler(
+                'password_login', { //接受分类，切换activity
+                    'user_student_id': JSON.stringify(result.user_student_id),
+                },
+            );
+                alert("SUCCESS");
         },
         error : function() {
             alert("异常！");
@@ -142,18 +148,19 @@ function login_bypassword() {
         data: $('#form1').serialize(),
         
         success: function (result) {
-            console.log(result);//打印服务端返回的数据(调试用)
-            console.log(JSON.stringify(result));//打印服务端返回的数据(调试用)
+            console.log(result)//打印服务端返回的数据(调试用)
+            console.log(JSON.stringify(result.user_student_id))//打印服务端返回的数据(调试用)
+            
             JsBridge.callHandler(
             'password_login', { //接受分类，切换activity
-                'user_phone': JSON.stringify(result),
+                'user_student_id': JSON.stringify(result.user_student_id),
             },
         );
             alert("SUCCESS");
         },
 
         error : function() {
-            // alert("异常！");
+            alert("异常！");
         }
     });
 }
