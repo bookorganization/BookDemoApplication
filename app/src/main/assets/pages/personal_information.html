@@ -58,13 +58,25 @@
                 "user_head_portrait_url":"http://szpstore.oss-cn-beijing.aliyuncs.com/szp.jpg?Expires=1554214940&OSSAccessKeyId=LTAINIcvCcsIqETW&Signature=T25xzgVlZiyvc7weKvdR8Y2S99U%3D",
                 "user_grade":null
             }
-        if(localStorage.length==0){
-            // localStorage.clear()
-            localStorage.setItem('user_fake_name',user.user_name)
-            localStorage.setItem('user_gender',user.user_sex)
-            localStorage.setItem('user_birthday',user.user_birthday)
-            localStorage.setItem('user_grade',user.user_grade)
+        // if(localStorage.length==0){
+        //     // localStorage.clear()
+        //     localStorage.setItem('user_fake_name',user.user_name)
+        //     localStorage.setItem('user_gender',user.user_sex)
+        //     localStorage.setItem('user_birthday',user.user_birthday)
+        //     localStorage.setItem('user_grade',user.user_grade)
+        // }
+        getLocalStroage('user_fake_name',user.user_name)
+        getLocalStroage('user_gender',user.user_sex)
+        getLocalStroage('user_birthday',user.user_birthday)
+        getLocalStroage('user_grade',user.user_grade)
+
+        function getLocalStroage(name, value){
+            if(localStorage.getItem(name)==null){
+                localStorage.setItem(name,value)
+            }
+            return localStorage.getItem(name);
         }
+
         $('#user_name').html(localStorage.getItem('user_fake_name'))
         $('#user_id').html('学号:'+user.user_student_id)
         $('#user_head').attr('src',user.user_head_portrait_url)

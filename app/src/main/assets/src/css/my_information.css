@@ -13,12 +13,17 @@ body{
 	align-items: center;
 }
 .intro{
-	display: none;
+	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	margin: 0 auto;
 }
+
+.my_untro{
+	display: none;
+}
+
 .my_photo{
 	width: 80px;
 	height: 80px;

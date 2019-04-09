@@ -6,17 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>my_information</title>
     <link rel="stylesheet" href="../src/css/my_information.css">
+
+    <script src="../src/modules/jquery/jquery-3.3.1.min.js"></script>
 </head>
 <body>
     <div class="background">
-        <div class="intro">
+        <div class="intro" id="intro">
             <!-- <img src="../src/img/my_photo.png" class="my_photo" id='user_head'> -->
             <img  class="my_photo" id='user_head'>
             <p class="user_info"><label class="userinfo" id="user_name"></label></p>
             <p class="user_info"><label class="userinfo" id="user_id"></label></p>
         </div>
         <div>
-            <a href="login_register.html"><label>未登录</label></a>
+            <a href="login_register.html"><label class="my_untro" id="my_untro">未登录</label></a>
         </div>
     </div>
     <div class="info">
@@ -58,42 +60,55 @@
             <img src="../src/img/arrow.png" class="vip_img">
         </div>
     </div>
-    <script src="../src/modules/jquery/jquery-3.3.1.min.js"></script>
-    <script>
-        var user={
-                "result":true,
-                "user_vip_expiration_time":1556274833000,
-                "user_sex":"男",
-                "user_birthday":832089600000,
-                "user_name":"苏子棚",
-                "user_is_it_vip":"1",
-                "user_student_id":100001,
-                "user_head_portrait_url":"http://szpstore.oss-cn-beijing.aliyuncs.com/szp.jpg?Expires=1554214940&OSSAccessKeyId=LTAINIcvCcsIqETW&Signature=T25xzgVlZiyvc7weKvdR8Y2S99U%3D",
-                "user_grade":null
+    <!-- <script src="../src/js/my_information.js"></script> -->
+<script defer=true>
+        function connectWebViewJavascriptBridge(callback) {
+            if (window.WebViewJavascriptBridge) {
+                callback(WebViewJavascriptBridge)
+            } else {
+                document.addEventListener(
+                    'WebViewJavascriptBridgeReady'
+                    , function() {
+                        callback(WebViewJavascriptBridge)
+                    },
+                    false
+                );
             }
+        }
+        connectWebViewJavascriptBridge(function(bridge) {
+            bridge.init(function(message, responseCallback) {
+                console.log('JS got a message', message);
+                    var data = {
+                        'Javascript Responds': '测试中文!'
+                    };
+                if (responseCallback) {
+                    console.log('JS responding with', data)
 
-        $('#user_name').html(user.user_name)
-        $('#user_id').html('学号:'+user.user_student_id)
-        $('#user_head').attr('src',user.user_head_portrait_url)
+                    responseCallback(message);
+                    console.log(message)
+                    console.log(JSON.parse(message))
+                    message = JSON.parse(message)
 
-        var now = new Date()
-        //console.log(now.getTime())
+                    //引入my_information.js
+                    ~function() {
+                      var s = document.createElement('script');
+                      s.src = '../src/js/my_information.js';
+                      document.body.appendChild(s);
+                    }();
 
-        var deadline = user.user_vip_expiration_time    //2019年4月26日
-        //console.log(deadline)
-        var ex_time_day = (deadline-now.getTime())/(1000*60*60*24)
-        // console.log(Math.ceil(ex_time_day))
-        $('#ex_time_day').html(Math.ceil(ex_time_day)+'天')
-        
-        var ex_time_day1=Math.floor(ex_time_day)
-        // console.log(ex_time_day)
-        // console.log(ex_time_day1)
 
-        var ex_time_hour=(ex_time_day-ex_time_day1)*24
-        //console.log(ex_time_hour)
-        var ex_time_minute =(ex_time_hour-Math.floor(ex_time_hour))*60
-        //console.log(ex_time_minute)
-        $('#ex_time').html(ex_time_day1+'天'+Math.floor(ex_time_hour)+'时'+Math.ceil(ex_time_minute)+'分')
-     </script>
+                    if(false){   //未登录
+                        var my_untro1=document.getElementById('my_untro')
+                        my_untro1.style.display='block';
+                    }else{
+                        var intro=document.getElementById('intro')
+                        intro.style.display='flex';
+                    }
+                }
+            });
+        })        
+    </script>
 </body>
+
+
 </html>
