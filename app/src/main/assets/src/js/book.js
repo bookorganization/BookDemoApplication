@@ -216,6 +216,39 @@ function bookInit() {
             $('.comment-list').html(commentsDom)
         }
 
+        //发表评论
+        $('.comment-input input').bind('keydown',function(event){
+            if(event.keyCode == "13")    
+            {
+                var comment = $.trim($('.comment-input input').val())
+                var sendData = {}
+                sendData.video_id = currentVideoId
+                sendData.from_user_id = currentUserId
+                sendData.cotent = comment
+                console.log(sendData)
+                //发送搜索字
+                $.ajax({
+                    type:'post',
+                    url:'http://10.112.7.201:8080/commenttovideo',
+                    async:true,
+                    dataType:'JSON',
+                    data:sendData,
+                    success:function(res){
+                        console.log(res);
+                        //执行页面渲染
+                        // ...
+                        // bookListClass.$data.booklist = res
+                    },
+                    error:function(res){
+                        console.log(res);
+                        //执行页面刷新提示让用户刷新
+                    }
+                
+                
+                })         
+            }
+          });
+
         
 
         // qrcode
