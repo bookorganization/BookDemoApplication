@@ -15,11 +15,10 @@ if(videoClassType == 'recommend' && searchType == 'other'){
 }else if(searchType == 'teacher'){
     listurl = 'http://10.112.7.201:8080/getbooklistbyid'//通过讲师获取列表
     sendData.lecturer_id = videoClassType
+}else if(searchType == 'grade'){
+    listurl = 'http://10.112.7.201:8080/booklistbyyear'//通过讲师获取列表
+    sendData.video_year = videoClassType
 }
-// else if(searchType == 'type'){
-//     listurl = 'http://10.112.7.201:8080/getbooklistbyid'//通过讲师获取列表
-//     sendData.lecturer_id = videoClassType
-// }
 
 // 图书列表渲染
 var bookListClass = new Vue({

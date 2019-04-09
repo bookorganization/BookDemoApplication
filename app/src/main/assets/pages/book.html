@@ -166,21 +166,21 @@
             }
         }
 
-        // connectWebViewJavascriptBridge(function(bridge) {
-        //     bridge.init(function(message, responseCallback) {
-        //         console.log('JS got a message', message);
-        //             var data = {
-        //                 'Javascript Responds': '测试中文!'
-        //             };
-        //         if (responseCallback) {
-        //             console.log('JS responding with', data)
+        connectWebViewJavascriptBridge(function(bridge) {
+            bridge.init(function(message, responseCallback) {
+                console.log('JS got a message', message);
+                    var data = {
+                        'Javascript Responds': '测试中文!'
+                    };
+                if (responseCallback) {
+                    console.log('JS responding with', data)
 
-        //             responseCallback(message);
-        //             console.log(message)
-        //             console.log(JSON.parse(message))
-        //             message = JSON.parse(message)
-        //             console.log(message.bookid)
-        //             $('#hidden-data').attr('userid',message.bookid)
+                    responseCallback(message);
+                    console.log(message)
+                    console.log(JSON.parse(message))
+                    message = JSON.parse(message)
+                    console.log(message.bookid)
+                    $('#hidden-data').attr('userid',message.bookid)
 
                     //引入book.js
                     ~function() {
@@ -189,9 +189,9 @@
                       document.body.appendChild(s);
                     }();
 
-        //         }
-        //     });
-        // })        
+                }
+            });
+        })        
     </script>
 
     <!--<script src="../src/js/Jsbridge.js" defer=true></script>-->

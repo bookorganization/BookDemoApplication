@@ -173,8 +173,9 @@
     border: none;
     height: 28px;
     border-radius: 30px;
-    /* background: #f9f9f9; */
-    background: #333;
+    background: #f9f9f9;
+    text-indent: 10px;
+    /* background: #333; */
 }
 
 .comment-user{
@@ -209,7 +210,7 @@
     margin-bottom: 10px;
     font-size: 12px;
     line-height: 15px;
-    color:#f9f9f9;
+    color:#666;
 }
 .comment-line{
     height: 1px;
