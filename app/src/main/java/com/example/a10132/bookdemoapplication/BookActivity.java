@@ -12,13 +12,13 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.github.lzyzsd.jsbridge.BridgeHandler;
 import com.github.lzyzsd.jsbridge.BridgeWebView;
 import com.github.lzyzsd.jsbridge.CallBackFunction;
 import com.github.lzyzsd.jsbridge.DefaultHandler;
 
 public class BookActivity extends AppCompatActivity {
     private BridgeWebView mWebView;
-    private Button bt;
     String id;
     int RESULT_CODE = 0;
     ValueCallback<Uri> mUploadMessage;
@@ -43,11 +43,18 @@ public class BookActivity extends AppCompatActivity {
                 Toast.makeText(BookActivity.this, data, Toast.LENGTH_LONG).show();
             }
         });
+//        mWebView.registerHandler("goToBook", new BridgeHandler() {
+//            @Override
+//            public void handler(String data, CallBackFunction function) {
+//                mWebView.send(data, new CallBackFunction() {
+//                    @Override
+//                    public void onCallBack(String data) { //处理js回传的数据
+//                        Toast.makeText(BookActivity.this, data, Toast.LENGTH_LONG).show();
+//                    }
+//                });
+//            }
+//
+//        });
 
-    }
-    public void pickFile() {
-        Intent chooserIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        chooserIntent.setType("image/*");
-        startActivityForResult(chooserIntent, RESULT_CODE);
     }
 }

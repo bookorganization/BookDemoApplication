@@ -133,7 +133,7 @@
             </div>
         </div>
 
-        <div id="hidden-data" userid="5"></div>
+        <div id="hidden-data" userid="1" videoid="2"></div>
 
         <!-- qecode -->
         <div id="qrcode" style="display:none"></div>
@@ -146,12 +146,11 @@
 
 
     <script src="../src/modules/dplayer/DPlayer.min.js"></script>
-    <script src="../src/js/Jsbridge.js"></script>
     <script src="../src/modules/vue/vue.min.js"></script>
     <script src="../src/modules/qrcode/qrcode.min.js"></script>
     <script src="../src/modules/mobiletouch/touchwipe.js"></script>
 </body>
-<script>
+<script defer=true>
 
         function connectWebViewJavascriptBridge(callback) {
             if (window.WebViewJavascriptBridge) {
@@ -167,18 +166,34 @@
             }
         }
 
-        connectWebViewJavascriptBridge(function(bridge) {
-            bridge.init(function(message, responseCallback) {   
-                if (responseCallback) {
-                    // console.log('JS responding with', data);
+        // connectWebViewJavascriptBridge(function(bridge) {
+        //     bridge.init(function(message, responseCallback) {
+        //         console.log('JS got a message', message);
+        //             var data = {
+        //                 'Javascript Responds': '测试中文!'
+        //             };
+        //         if (responseCallback) {
+        //             console.log('JS responding with', data)
 
-                    responseCallback(message);
-                    $('#hidden-data').attr('userid',message)
-                }
-            });
+        //             responseCallback(message);
+        //             console.log(message)
+        //             console.log(JSON.parse(message))
+        //             message = JSON.parse(message)
+        //             console.log(message.bookid)
+        //             $('#hidden-data').attr('userid',message.bookid)
 
-       
-        })        
-    </script>    
-    <script src="../src/js/book.js"></script>
+                    //引入book.js
+                    ~function() {
+                      var s = document.createElement('script');
+                      s.src = '../src/js/book.js';
+                      document.body.appendChild(s);
+                    }();
+
+        //         }
+        //     });
+        // })        
+    </script>
+
+    <!--<script src="../src/js/Jsbridge.js" defer=true></script>-->
+    <!--<script src="../src/js/book.js" defer=true></script>-->
 </html>

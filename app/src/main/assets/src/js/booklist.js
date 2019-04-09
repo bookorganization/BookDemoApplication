@@ -1,6 +1,8 @@
 //判断分类类型
 var videoClassType = $('.hidden-data').attr('tagvalue')
 var searchType = $('.hidden-data').attr('type')
+console.log($('.hidden-data').attr('tagvalue'))
+console.log($('.hidden-data').attr('type'))
 var listurl = 'http://10.112.7.201:8080/booklistbytype'
 var sendData = {}
 if(videoClassType == 'recommend' && searchType == 'other'){    

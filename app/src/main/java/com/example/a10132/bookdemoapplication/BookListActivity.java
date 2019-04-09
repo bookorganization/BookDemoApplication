@@ -3,10 +3,12 @@ package com.example.a10132.bookdemoapplication;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.widget.Toast;
 
+import com.github.lzyzsd.jsbridge.BridgeHandler;
 import com.github.lzyzsd.jsbridge.BridgeWebView;
 import com.github.lzyzsd.jsbridge.CallBackFunction;
 import com.github.lzyzsd.jsbridge.DefaultHandler;
@@ -33,6 +35,16 @@ public class BookListActivity extends AppCompatActivity {
             public void onCallBack(String data) { //处理js回传的数据
                 Toast.makeText(BookListActivity.this, data, Toast.LENGTH_LONG).show();
             }
+        });
+        mWebView.registerHandler("goToBook", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Intent intent = new Intent(BookListActivity.this, BookActivity.class);
+                intent.putExtra("id",data);
+                startActivity(intent);
+                function.onCallBack("submitFromWeb exe, response data 中文 from Java");
+            }
+
         });
     }
 }

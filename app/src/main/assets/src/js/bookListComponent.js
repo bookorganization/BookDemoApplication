@@ -20,7 +20,7 @@ Vue.component('book-one',{
                     '<div class="book-states">'+
                         '<span class="book-tag-cate">{{ book.video_type }}</span>'+
                         '<span class="book-play-times">播放人数：{{ book.number_of_readers }}</span>'+
-                        '<span class="book-on-date">上架时间：{{ book.time }}</span>'+  
+                        '<span class="book-on-date">上架时间：{{ moment(book.time).format("YYYY-MM-DD") }}</span>'+  
                     '</div>'+
                 '</div>'+
             '</div>'+
