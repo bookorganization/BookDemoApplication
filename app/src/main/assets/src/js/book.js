@@ -83,7 +83,7 @@ function bookInit() {
                 videoControl(".dplayer-video-current", 300)
             }
             //视频下载
-            videoDownload(userType, currentVideoId)  
+            videoDownload(userType, videourl)  
         }
 
         //vip消息提醒
@@ -134,7 +134,7 @@ function bookInit() {
                 connectWebViewJavascriptBridge(function (bridge) {
                     bridge.callHandler(
                         'download', {
-                            'bookid': videoId
+                            'url': videoId
                         },
                         function (responseData) {
                             document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
