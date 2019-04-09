@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>修改日期</title>
+    <link rel="stylesheet" href="../src/css/modify_style.css">
+</head>
+<body>
+    <div class="main_page">
+        
+            <div class="select_start_date">
+                <div class="start_date_left">
+                    出生日期
+                </div>
+                <div class="start_date_right">
+                    <input type="text" name="start_date" id="start_date" placeholder="选择开始日期" readonly="readonly" />
+                </div>
+            </div>
+    </div>    
+    
+    <script src="../src/modules/jquery/jquery-3.3.1.min.js"></script>
+    <script>
+		var calendar = new LCalendar();
+		calendar.init({
+			'trigger': '#start_date', //标签id
+			'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+			//'minDate': (new Date().getFullYear()-3) + '-' + 1 + '-' + 1, //最小日期
+			//'maxDate': (new Date().getFullYear()+3) + '-' + 12 + '-' + 31 //最大日期
+		});
+        var now = new Date(832089600000)
+        var year =now.getFullYear()
+        var month = now.getMonth()+1
+        var date = now.getDate();
+        console.log(year+'年'+month+'月'+date+'日')
+
+    </script>
+</body>
+</html>

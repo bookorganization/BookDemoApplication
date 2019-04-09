@@ -18,37 +18,57 @@
     <div class="content">
         <div class="part1">
             <p class="content_style">昵称</p>
-            
+            <label class="input_style" id="user_fake_name" onclick="javascrtpt:window.location.href='name_modify.html'"></label>
         </div>
         <!-- <hr> -->
         <div class="part1">
             <p class="content_style">性别</p>
+            <label class="input_style" id="user_gender" onclick="javascrtpt:window.location.href='gender_modify.html'">请选择性别</label>
         </div>
         <!-- <hr> -->
         <div class="part1">
             <p class="content_style">出生日期</p>
+            <label class="input_style" id="user_birthday" onclick="javascrtpt:window.location.href='birthday_modify.html'">请选择日期</label>
         </div>
         <!-- <hr> -->
         <div class="part1">
             <p class="content_style">所属年级</p>
+            <label class="input_style" id="user_class" onclick="javascrtpt:window.location.href='class_modify.html'">请选择年级</label>
+        </div>
+        <div class="part2">
+            <button type="submit" class="modify_submit" onclick="personal_information_modify()"><p class="style1">确定</p></button>
         </div>
     </div>
     <script src="../src/modules/jquery/jquery-3.3.1.min.js"></script>
     <script>
-            var user={
-                    "result":true,
-                    "user_vip_expiration_time":1554028433000,
-                    "user_sex":"男",
-                    "user_birthday":832089600000,
-                    "user_name":"苏子棚",
-                    "user_is_it_vip":"1",
-                    "user_student_id":100001,
-                    "user_head_portrait_url":"http://szpstore.oss-cn-beijing.aliyuncs.com/szp.jpg?Expires=1554214940&OSSAccessKeyId=LTAINIcvCcsIqETW&Signature=T25xzgVlZiyvc7weKvdR8Y2S99U%3D",
-                    "user_grade":null
-                }
-            $('#user_name').html(user.user_name)
-            $('#user_id').html('学号:'+user.user_student_id)
-            $('#user_head').attr('src',user.user_head_portrait_url)
+        var user={
+                "result":true,
+                "user_vip_expiration_time":1554028433000,
+                "user_sex":"男",
+                "user_birthday":832089600000,
+                "user_name":"苏子棚",
+                "user_is_it_vip":"1",
+                "user_student_id":100001,
+                "user_head_portrait_url":"http://szpstore.oss-cn-beijing.aliyuncs.com/szp.jpg?Expires=1554214940&OSSAccessKeyId=LTAINIcvCcsIqETW&Signature=T25xzgVlZiyvc7weKvdR8Y2S99U%3D",
+                "user_grade":null
+            }
+        if(localStorage.length==0){
+            // localStorage.clear()
+            localStorage.setItem('user_fake_name',user.user_name)
+            localStorage.setItem('user_gender',user.user_sex)
+            localStorage.setItem('user_birthday',user.user_birthday)
+            localStorage.setItem('user_grade',user.user_grade)
+        }
+        $('#user_name').html(localStorage.getItem('user_fake_name'))
+        $('#user_id').html('学号:'+user.user_student_id)
+        $('#user_head').attr('src',user.user_head_portrait_url)
+        $('#user_fake_name').html(localStorage.getItem('user_fake_name'))
+
+        // $('#user_name').html(user.user_name)
+        // $('#user_id').html('学号:'+user.user_student_id)
+        // $('#user_head').attr('src',user.user_head_portrait_url)
+        // $('#user_name1').val=user.user_name
+        // $('#user_fake_name').html(user.user_name)
      </script>
 </body>
 </html>
