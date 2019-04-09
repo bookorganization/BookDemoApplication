@@ -78,7 +78,7 @@ function bookInit() {
                 },
             });
             //视频控制
-            var userType = 0
+            var userType = 1
             if(userType == 0){//普通用户
                 videoControl(".dplayer-video-current", 300)
             }
@@ -88,7 +88,7 @@ function bookInit() {
 
         //vip消息提醒
         function vipAlert(words){
-            alert(words)
+            console.log(words)
         }
 
         // 视频控制
@@ -129,18 +129,19 @@ function bookInit() {
                 //用户判断
                 if(userType == 0){//普通用户
                    vipAlert("开通会员可下载视频")
+                }else{
+                    console.log(videoId)
+                    connectWebViewJavascriptBridge(function (bridge) {
+                        bridge.callHandler(
+                            'download', 
+                            videoId,
+                            function (responseData) {
+                                document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
+                            }
+                        );
+                    })
                 }
-                console.log(videoId)
-                connectWebViewJavascriptBridge(function (bridge) {
-                    bridge.callHandler(
-                        'download', {
-                            'url': videoId
-                        },
-                        function (responseData) {
-                            document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
-                        }
-                    );
-                })
+                
             })
         }
 
