@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="..\src\modules\jquery\jquery-3.3.1.min.js"></script>
+    <script src="..\src\js\Jsbridge.js"></script>
+    <script type="text/javascript" src="..\src\js\login_register.js"></script>
+    <link rel="stylesheet" href="../src/css/login_register.css">
+</head>
+
+<body>
+    <div class="title">
+        <div class="bk">
+            <div class="title_text select" id="login_text" onclick="checkout(this.id)">
+                <p class="text">登录</p>
+            </div>
+            <div class="title_text notselect" id="register_text" onclick="checkout(this.id)">
+                <p class="text">注册</p>
+            </div>
+        </div>
+    </div>
+    <!-- 验证码登录 -->
+    <div id="login">
+        <form id="form" onsubmit="return false" action="##" method="post">
+            <div class="content_login" > 
+                <div class="part1">
+                    <img src="../src/img/phone.png" class="phone_img">
+                    <input placeholder="请输入登录手机号码" style="border:0px;" name="user_phone" class="user_phone" id="user_phone" onblur="check()"></input>
+                    <label id="phone_info"></label>
+                </div>
+                <div class="part1">
+                    <img src="../src/img/number.png" class="number_img">
+                    <input placeholder="请输入手机验证码" style="border:0px;" name="verifyCode"></input>              
+                </div>
+                <button type="button" class="gain_num"><p class="gain_text" onclick="login_Sms()">获取验证码</p></button>
+                <button type="button" class="gain_num"><p class="gain_text" onclick="login_bySms()">登录</p></button>
+            </div>
+            <div class="end">
+                <a id="login_pas"  onclick="turn_off(this.id)">密码登录</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- 密码登录 -->
+    <div id="login_paswd">
+        <form id="form1" onsubmit="return false" action="##" method="post">
+            <div class="content_login">   
+                <div class="part1">
+                    <img src="../src/img/phone.png" class="phone_img">
+                    <input placeholder="请输入登录手机号码" style="border:0px;" name="user_phone" class="user_phone" id="user_phone1" onblur="check1()"></input>
+                </div>
+                <div class="part1">
+                    <img src="../src/img/number.png" class="number_img">
+                    <input id="input_paswd" placeholder="请输入登录密码" style="border:0px;" type="password" name="user_password"></input>
+                    <img src="../src/img/visible.png" id="visible_img" class="paswd_img" onclick="hideShowPsw()">             
+                </div>
+                <button type="button" class="gain_num" onclick="login_bypassword()"><p class="gain_text">登录</p></button>
+            </div>
+        </form>
+        <div class="end">
+            <a id="login_pas1"  onclick="turn_off(this.id)">忘记密码</a>
+        </div>
+    </div>
+
+    <!-- 注册界面 -->
+    <div id="register">
+        <form id="form2" onsubmit="return false" action="##" method="post">
+            <div class="content_register">       
+                    <div class="part1">
+                        <img src="../src/img/phone.png" class="phone_img">
+                        <input placeholder="请输入登录手机号码" style="border:0px;" name="user_phone" class="user_phone" id="user_phone2" onblur="check2()"></input>
+                    </div>
+                    <div class="part1">
+                        <img src="../src/img/number.png" class="number_img">
+                        <input placeholder="请输入手机验证码" style="border:0px;" name="verifyCode"></input>              
+                    </div>
+                    <div class="part1">
+                        <img src="../src/img/number.png" class="number_img">
+                        <input id="input_paswd1" placeholder="请输入登录密码" style="border:0px;" type="password" name="user_password"></input>
+                        <img src="../src/img/visible.png" id="visible_img1" class="paswd_img" onclick="hideShowPsw1()">             
+                    </div>
+                    <button type="button" class="gain_num"><p class="gain_text" onclick="register_Sms()">获取验证码</p></button>
+                    <button type="button" class="gain_num"><p class="gain_text" onclick="register_login()">登录</p></button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

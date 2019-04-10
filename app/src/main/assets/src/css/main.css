@@ -258,3 +258,34 @@ body{
     background: #ECECEC;
     margin-bottom: 5px;
 }
+/* booklist 搜索框 */
+#search-zone{
+    margin: 10px auto;
+    height: 30px;
+    /* width: 350px;
+    margin: 10px auto; */
+}
+.search-zone-button{
+    display: block;
+    width: 15px;
+    height: 15px;
+    margin-top: -22px;
+    margin-left: 21px;
+}
+.search-zone-input{
+    display: block;
+    height: 29px;
+    line-height: 29px;
+    border: none;
+    background: #f5f5f5;
+    color:#999;
+    width: calc(100% - 20px);
+    margin: 0px auto;
+    text-indent: 34px;
+    font-size: 12px;
+    border-radius: 15px;
+}
+
+
+/* 消除焦点框 */
+input,button,select,textarea{outline:none}

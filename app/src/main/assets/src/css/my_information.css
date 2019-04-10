@@ -1,6 +1,7 @@
 
 body{
 	background-color:#FFF9F9F9; 
+	margin: 0 0 0 0;
 }
 .background{
 	background-image: url('../img/background.png');
@@ -12,12 +13,17 @@ body{
 	align-items: center;
 }
 .intro{
-	display: flex;
+	display: none;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	margin: 0 auto;
 }
+
+.my_untro{
+	display: none;
+}
+
 .my_photo{
 	width: 80px;
 	height: 80px;
@@ -39,19 +45,7 @@ p.user_info{
 	box-shadow:0px 3px 11px 0px rgba(0,0,0,0.13);
 	border-radius:10px;
 	display: flex;
-}
-.account_info1{
-	display: inline-block;
-	margin-left: 20px;
-}
-.account_info2{
-	display: inline-block;
-	width: 36px;
-	margin: 0 auto;
-}
-.account_info3{
-	display: inline-block;
-	margin-right: 20px;
+	justify-content: space-between;
 }
 
 .num{
@@ -116,10 +110,11 @@ p.user_info{
 }
 .part1{
 	margin:0;
-	height: 40px;
+	height: 60px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	border-bottom: 1px solid rgba(236,236,236,1);
 }
 .content_style{
 	width:200px;

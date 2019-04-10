@@ -21,7 +21,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BookActivity"></activity>
+        <activity android:name=".BookActivity" />
+        <activity android:name=".ClassesActivity" />
+        <activity android:name=".BookListActivity" />
+        <activity android:name=".LoginActivity">
+
+        </activity>
+        <service android:name=".DownLoadService">
+            <intent-filter>
+                <action android:name="com.example.a10132.bookdemoapplication.DownLoadService"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

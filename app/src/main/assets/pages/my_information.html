@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>my_information</title>
+    <link rel="stylesheet" href="../src/css/my_information.css">
+
+    <script src="../src/modules/jquery/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <div class="background">
+        <div class="intro" id="intro">
+            <!-- <img src="../src/img/my_photo.png" class="my_photo" id='user_head'> -->
+            <img  class="my_photo" id='user_head'>
+            <p class="user_info"><label class="userinfo" id="user_name"></label></p>
+            <p class="user_info"><label class="userinfo" id="user_id"></label></p>
+        </div>
+        <div>
+            <a href="login_register.html"><label class="my_untro" id="my_untro">未登录</label></a>
+        </div>
+    </div>
+    <div class="info">
+        <div class="account_info1">
+            <p class="num"><label id="ex_time_day"></label></p>
+            <p class="text_style"><label>会员剩余天数</label></p>
+        </div>
+
+        <div class="account_info3">
+            <p class="num"><label id="ex_time"></label></p>
+            <p class="text_style"><label>剩余会员时间</label></p>
+        </div>
+    </div>
+    <div class="vip">
+        <img src="../src/img/vip.png" class="img_locate">
+        <p class="vip_name">VIP会员</p>
+        <p class="vip_content">·畅享所有课程服务</p>
+        <p class="vip_get">立即开通</p>
+        <img src="../src/img/arrow.png" class="vip_img">
+    </div>
+    <div class="content">
+        <div class="part1">
+            <p class="content_style">分享有礼</p>
+            <img src="../src/img/arrow.png" class="vip_img">
+        </div>
+        <!-- <hr> -->
+        <div class="part1">
+            <p class="content_style">积分商城</p>
+            <img src="../src/img/arrow.png" class="vip_img">
+        </div>
+        <!-- <hr> -->
+        <div class="part1">
+            <p class="content_style">青枣合伙人申请</p>
+            <img src="../src/img/arrow.png" class="vip_img">
+        </div>
+        <!-- <hr> -->
+        <div class="part1">
+            <p class="content_style">联系客服</p>
+            <img src="../src/img/arrow.png" class="vip_img">
+        </div>
+    </div>
+    <!-- <script src="../src/js/my_information.js"></script> -->
+<script defer=true>
+        function connectWebViewJavascriptBridge(callback) {
+            if (window.WebViewJavascriptBridge) {
+                callback(WebViewJavascriptBridge)
+            } else {
+                document.addEventListener(
+                    'WebViewJavascriptBridgeReady'
+                    , function() {
+                        callback(WebViewJavascriptBridge)
+                    },
+                    false
+                );
+            }
+        }
+
+        connectWebViewJavascriptBridge(function (bridge) {
+            var sendObj = {}
+            bridge.callHandler(
+                'account_change', { //接受分类，切换activity
+                    'content': JSON.stringify(sendObj)
+                },
+                function (responseData) {
+                    document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
+                }
+            );
+        })        
+        
+            connectWebViewJavascriptBridge(function (bridge) {
+                bridge.init(function (message, responseCallback) {
+                    console.log('JS got a message', message);
+                    var data = {
+                        'Javascript Responds': '测试中文!'
+                    };
+                    if (responseCallback) {
+                        console.log('JS responding with', data)
+
+                        responseCallback(message);
+                        alert(message)
+                        alert(JSON.parse(message))
+                        // message = JSON.parse(message)
+
+                        //引入my_information.js
+                        ~function () {
+                            var s = document.createElement('script');
+                            s.src = '../src/js/my_information.js';
+                            document.body.appendChild(s);
+                        }();
+
+
+                        if (false) {   //未登录
+                            var my_untro1 = document.getElementById('my_untro')
+                            my_untro1.style.display = 'block';
+                        } else {
+                            var intro = document.getElementById('intro')
+                            intro.style.display = 'flex';
+                        }
+                    }
+                });
+            })        
+    </script>
+</body>
+
+
+</html>

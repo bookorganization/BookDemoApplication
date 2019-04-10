@@ -6,44 +6,53 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>全部分类</title>
     <link rel="stylesheet" href="../src/css/classes.css">
+    <!-- jquery -->
+    <script src="../src/modules/jquery/jquery-3.3.1.min.js"></script>
 </head>
 <body>
     <div class="classes-part">
+
         <div class="class-wrapper">
             <div class="class-left">
                 <div class="class-logo"><img src="../src/img/classes1.png" alt=""></div>
-                <div class="class-type">年级</div>
+                <div class="class-type class-type1">年级</div>
             </div>
             <div class="class-right">
-                <div class="class-tag">1~3年级</div>
-                <div class="class-tag">4~6年级</div>
+                <div class="class-tag" type="grade" tagvalue="1-3">1~3年级</div>
+                <div class="class-tag" type="grade" tagvalue="4-6">4~6年级</div>
             </div>
         </div>
+        <div class="class-line"></div>
+
         <div class="class-wrapper">
             <div class="class-left">
                 <div class="class-logo"><img src="../src/img/classes2.png" alt=""></div>
-                <div class="class-type">类型</div>
+                <div class="class-type class-type2">类型</div>
             </div>
             <div class="class-right">
-                <div class="class-tag">亲近文学</div>
-                <div class="class-tag">益智科普</div>
+                <div class="class-tag" tagvalue="0" type="type">亲近文学</div>
+                <div class="class-tag" tagvalue="1" type="type">益智科普</div>
             </div>
         </div>
+        <div class="class-line"></div>
+
         <div class="class-wrapper">
             <div class="class-left">
                 <div class="class-logo"><img src="../src/img/classes3.png" alt=""></div>
-                <div class="class-type">老师</div>
+                <div class="class-type class-type3">老师</div>
             </div>
             <div class="class-right">
-                <div class="class-tag">精灵哥哥</div>
-                <div class="class-tag">冰淇淋姐姐</div>
-                <div class="class-tag">虎姐</div>
-                <div class="class-tag">冰淇淋姐姐</div>
-                <div class="class-tag">虎姐</div>
+                <div class="class-tag class-tag-in" type="teacher" tagvalue="3">精灵哥哥</div>
+                <div class="class-tag class-tag-in" type="teacher" tagvalue="1">冰淇淋姐姐</div>
+                <div class="class-tag class-tag-in" type="teacher" tagvalue="2">虎姐</div>
+                <div class="class-tag class-tag-in" type="teacher" tagvalue="1">冰淇淋姐姐</div>
+                <div class="class-tag class-tag-in" type="teacher" tagvalue="2">虎姐</div>
             </div>
         </div>
+        <div class="class-line"></div>
     </div>
-
     
+    <script src="../src/js/Jsbridge.js"></script>
+    <script src="../src/js/classes.js"></script>
 </body>
 </html>

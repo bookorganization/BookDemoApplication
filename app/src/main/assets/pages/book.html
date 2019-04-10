@@ -43,7 +43,6 @@
                     </div>
                 </div>
                 <div class="book-info-detail">
-                    《夏洛的网》以儿童的语言讲述关于爱、友谊、生死的故事！《夏洛的网》是一部描写关于友情的童话，在朱克曼家的谷仓里，小猪威尔伯和蜘蛛夏洛建立了最真挚的友谊。《夏洛的网》还是一部探究关于生命的童话，“……生命到底是什么啊？我们出生，我们活上一阵子，我们死去。一只蜘蛛，一生只忙着捕捉和吃苍蝇是毫无意义的，通过帮助你，也许可以提升一点我生命的价值。”童趣盎然，是《夏洛的网》重要的叙事风格。细腻情感化，则传递了本书的语言风格。
                 </div>
             </div>
 
@@ -60,7 +59,7 @@
                     <div class="normal-right">
                         <div class="teacher-name normal-title">讲师介绍</div>
                         <div class="tid-text normal-font">
-                                以儿童的语言讲述关于爱、友谊、生死的故事！是一部描写关于友情的童话，在朱谷仓里，小尔…
+                                <!-- 以儿童的语言讲述关于爱、友谊、生死的故事！是一部描写关于友情的童话，在朱谷仓里，小尔… -->
                             <a href="mor.html">更多》</a>
                         </div>
                     </div>
@@ -75,12 +74,14 @@
                 </div>
                 <div class="book-related-detail normal-detail clearfix">
                     <div class="brd-img normal-left normal-img">
-                        <img src="../src/img/b1.png" alt="">
+                        <!-- <img src="" alt="" class="recom-book"> -->
                     </div>
                     <div class="normal-right">
-                        <div class="br-name normal-title">夏洛的网</div>
+                        <div class="br-name normal-title">
+                            <!-- 夏洛的网 -->
+                        </div>
                         <div class="brd-text normal-font">
-                                一部描写关于友情的童话，在朱克曼家的谷仓里，小猪威尔伯和蜘蛛夏洛建立了最真挚的友谊。《夏洛的网》还是一部探究关于生命的童话
+                            <!-- 一部描写关于友情的童话，在朱克曼家的谷仓里，小猪威尔伯和蜘蛛夏洛建立了最真挚的友谊。《夏洛的网》还是一部探究关于生命的童话 -->
                         </div>
                    </div>
                 </div>
@@ -102,7 +103,7 @@
 
             <!-- 评论列表 -->
             <div class="comment-list">
-                <div class="comment-one">
+                <!-- <div class="comment-one">
                     <div class="comment-user">
                         <div class="comment-user-logo">
                             <img src="../src/img/teacher.png" alt="">
@@ -120,7 +121,7 @@
                 </div>
                 <div class="comment-text">
                     以儿童的语言讲述关于爱、友谊、生死的故事！是一部描写关于友情的童话，在朱谷仓里，
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -131,6 +132,13 @@
                 <div>做题</div>
             </div>
         </div>
+
+        <div id="hidden-data" userid="1" videoid="2"></div>
+
+        <!-- qecode -->
+        <div id="qrcode" style="display:none"></div>
+        
+        
     </div>
 
 
@@ -139,9 +147,10 @@
 
     <script src="../src/modules/dplayer/DPlayer.min.js"></script>
     <script src="../src/modules/vue/vue.min.js"></script>
-    <script src="../src/js/book.js"></script>
+    <script src="../src/modules/qrcode/qrcode.min.js"></script>
+    <script src="../src/modules/mobiletouch/touchwipe.js"></script>
 </body>
-<script>
+<script defer=true>
 
         function connectWebViewJavascriptBridge(callback) {
             if (window.WebViewJavascriptBridge) {
@@ -160,23 +169,32 @@
         connectWebViewJavascriptBridge(function(bridge) {
             bridge.init(function(message, responseCallback) {
                 console.log('JS got a message', message);
-                var data = {
-                    'Javascript Responds': '测试中文!'
-                };
-
+                    var data = {
+                        'Javascript Responds': '测试中文!'
+                    };
                 if (responseCallback) {
-                    console.log('JS responding with', data);
+                    console.log('JS responding with', data)
+
                     responseCallback(message);
+                    console.log(message)
+                    console.log(JSON.parse(message))
+                    message = JSON.parse(message)
+                    console.log(message.bookid)
+                    $('#hidden-data').attr('userid',message.bookid)
+                    $('#hidden-data').attr('videoid',message.bookid)
+
+                    //引入book.js
+                    ~function() {
+                      var s = document.createElement('script');
+                      s.src = '../src/js/book.js';
+                      document.body.appendChild(s);
+                    }();
+
                 }
             });
-
-            <!--bridge.registerHandler("submitFromBook", function(data, responseCallback) {-->
-                <!--document.getElementById("show").innerHTML = ("data from Java: = " + data);-->
-                <!--if (responseCallback) {-->
-                    <!--var responseData = "Javascript Says Right back aka!";-->
-                    <!--responseCallback(responseData);-->
-                <!--}-->
-            <!--});-->
-        })
+        })        
     </script>
+
+    <!--<script src="../src/js/Jsbridge.js" defer=true></script>-->
+    <!--<script src="../src/js/book.js" defer=true></script>-->
 </html>

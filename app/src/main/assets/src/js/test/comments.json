@@ -2,8 +2,12 @@
     {
        "video_id":"1",
         "from_user_id":"1",
+        "user_name":"小明"，
+        "user_grade""1",
+        "user_head_portrait_url":"sdsadasfsdag",
         "to_user_id":"",
-        "cotent":"真好看，推荐大家都来看！",
-        "omment_date":"151643634534",
+        "type_id":"1",
+        "content":"真好看，推荐大家都来看！",
+        "comment_date":"151643634534"
     }
 ]
