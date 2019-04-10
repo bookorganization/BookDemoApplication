@@ -6,24 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>my_information</title>
     <link rel="stylesheet" href="../src/css/my_information.css">
+
+    <script src="../src/modules/jquery/jquery-3.3.1.min.js"></script>
 </head>
 <body>
     <div class="background">
-        <div class="intro">
+        <div class="intro" id="intro">
             <!-- <img src="../src/img/my_photo.png" class="my_photo" id='user_head'> -->
             <img  class="my_photo" id='user_head'>
             <p class="user_info"><label class="userinfo" id="user_name"></label></p>
             <p class="user_info"><label class="userinfo" id="user_id"></label></p>
         </div>
+        <div>
+            <a href="login_register.html"><label class="my_untro" id="my_untro">未登录</label></a>
+        </div>
     </div>
     <div class="info">
         <div class="account_info1">
-            <p class="num"><label>21</label></p>
+            <p class="num"><label id="ex_time_day"></label></p>
             <p class="text_style"><label>会员剩余天数</label></p>
         </div>
 
         <div class="account_info3">
-            <p class="num"><label>21</label></p>
+            <p class="num"><label id="ex_time"></label></p>
             <p class="text_style"><label>剩余会员时间</label></p>
         </div>
     </div>
@@ -54,23 +59,92 @@
             <p class="content_style">联系客服</p>
             <img src="../src/img/arrow.png" class="vip_img">
         </div>
+        <div class="part1" id="logout" onclick="cancel_account()">
+                <p class="content_style">注销账户</p>
+                <img src="../src/img/arrow.png" class="vip_img">
+            </div>
     </div>
-    <script src="../src/modules/jquery/jquery-3.3.1.min.js"></script>
-    <script>
-            var user={
-                    "result":true,
-                    "user_vip_expiration_time":1554028433000,
-                    "user_sex":"男",
-                    "user_birthday":832089600000,
-                    "user_name":"苏子棚",
-                    "user_is_it_vip":"1",
-                    "user_student_id":100001,
-                    "user_head_portrait_url":"http://szpstore.oss-cn-beijing.aliyuncs.com/szp.jpg?Expires=1554214940&OSSAccessKeyId=LTAINIcvCcsIqETW&Signature=T25xzgVlZiyvc7weKvdR8Y2S99U%3D",
-                    "user_grade":null
+    <!-- <script src="../src/js/my_information.js"></script> -->
+<script defer=true>
+        function connectWebViewJavascriptBridge(callback) {
+            if (window.WebViewJavascriptBridge) {
+                callback(WebViewJavascriptBridge)
+            } else {
+                document.addEventListener(
+                    'WebViewJavascriptBridgeReady'
+                    , function() {
+                        callback(WebViewJavascriptBridge)
+                    },
+                    false
+                );
+            }
+        }
+
+        connectWebViewJavascriptBridge(function (bridge) {
+            var sendObj = {}
+            bridge.callHandler(
+                'account_change', { //接受分类，切换activity
+                    'content': JSON.stringify(sendObj)
+                },
+                function (responseData) {
+                    document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
                 }
-            $('#user_name').html(user.user_name)
-            $('#user_id').html('学号:'+user.user_student_id)
-            $('#user_head').attr('src',user.user_head_portrait_url)
-     </script>
+            );
+        })        
+        
+            connectWebViewJavascriptBridge(function (bridge) {
+                bridge.init(function (message, responseCallback) {
+                    console.log('JS got a message', message);
+                    var data = {
+                        'Javascript Responds': '测试中文!'
+                    };
+                    if (responseCallback) {
+                        console.log('JS responding with', data)
+
+                        responseCallback(message);
+                        // alert(message)
+                        // alert(JSON.parse(message))
+                        // message = JSON.parse(message)
+
+                        //引入my_information.js
+                        ~function () {
+                            var s = document.createElement('script');
+                            s.src = '../src/js/my_information.js';
+                            document.body.appendChild(s);
+                        }();
+
+
+                        if (message==false) {   //未登录
+                            var my_untro1 = document.getElementById('my_untro')
+                            my_untro1.style.display = 'block';
+                        } else {//登录
+                            var user_name_id = message.user_student_id //获取用户id
+                            
+                            var intro = document.getElementById('intro')
+                            var logout = document.getElementById('logout')
+                            logout.style.display = 'flex';
+                            intro.style.display = 'flex';
+                        }
+                    }
+                });
+            })  
+            function cancel_account(){
+                connectWebViewJavascriptBridge(function (bridge) {
+                    var userid = document.getElementById('user_id')
+                    if (userid) {
+                        bridge.callHandler(
+                            'account_cancel', { //接受分类，切换activity
+                                'user_id': JSON.stringify(userid)
+                            },
+                            function (responseData) {
+                                document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
+                            }
+                        );
+                    }
+                })  
+            }      
+    </script>
 </body>
+
+
 </html>

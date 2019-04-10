@@ -13,12 +13,17 @@ body{
 	align-items: center;
 }
 .intro{
-	display: flex;
+	display: none;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	margin: 0 auto;
 }
+
+.my_untro{
+	display: none;
+}
+
 .my_photo{
 	width: 80px;
 	height: 80px;
@@ -120,8 +125,6 @@ p.user_info{
 	line-height:37px;
 	display: inline-block;
 }
-hr{
-	width:100%;
-	height:1px;
-	background:rgba(236,236,236,1);
+#logout{
+	display: none;
 }

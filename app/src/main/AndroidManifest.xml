@@ -27,6 +27,11 @@
         <activity android:name=".LoginActivity">
 
         </activity>
+        <service android:name=".DownLoadService">
+            <intent-filter>
+                <action android:name="com.example.a10132.bookdemoapplication.DownLoadService"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

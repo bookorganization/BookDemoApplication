@@ -24,6 +24,7 @@ public class ClassesActivity extends AppCompatActivity {
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setJavaScriptEnabled(true);//支持js脚本
         webSettings.setDomStorageEnabled(true);////设置DOM Storage缓存，不然插件出不来
+        webSettings.setAllowFileAccessFromFileURLs(true);//跨域访问
         mWebView.setWebChromeClient(new WebChromeClient(){
 
         });//用chrome浏览器

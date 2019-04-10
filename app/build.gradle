@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.a10132.bookdemoapplication"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -30,4 +30,5 @@ dependencies {
     implementation 'org.jetbrains:annotations-java5:15.0'
     implementation 'com.github.lzyzsd:jsbridge:1.0.4'
     implementation 'com.google.code.gson:gson:2.3.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
 }
