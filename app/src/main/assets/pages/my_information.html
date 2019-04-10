@@ -59,6 +59,10 @@
             <p class="content_style">联系客服</p>
             <img src="../src/img/arrow.png" class="vip_img">
         </div>
+        <div class="part1" id="logout" onclick="cancel_account()">
+                <p class="content_style">注销账户</p>
+                <img src="../src/img/arrow.png" class="vip_img">
+            </div>
     </div>
     <!-- <script src="../src/js/my_information.js"></script> -->
 <script defer=true>
@@ -98,8 +102,8 @@
                         console.log('JS responding with', data)
 
                         responseCallback(message);
-                        alert(message)
-                        alert(JSON.parse(message))
+                        // alert(message)
+                        // alert(JSON.parse(message))
                         // message = JSON.parse(message)
 
                         //引入my_information.js
@@ -110,16 +114,35 @@
                         }();
 
 
-                        if (false) {   //未登录
+                        if (message==false) {   //未登录
                             var my_untro1 = document.getElementById('my_untro')
                             my_untro1.style.display = 'block';
-                        } else {
+                        } else {//登录
+                            var user_name_id = message.user_student_id //获取用户id
+                            
                             var intro = document.getElementById('intro')
+                            var logout = document.getElementById('logout')
+                            logout.style.display = 'flex';
                             intro.style.display = 'flex';
                         }
                     }
                 });
-            })        
+            })  
+            function cancel_account(){
+                connectWebViewJavascriptBridge(function (bridge) {
+                    var userid = document.getElementById('user_id')
+                    if (userid) {
+                        bridge.callHandler(
+                            'account_cancel', { //接受分类，切换activity
+                                'user_id': JSON.stringify(userid)
+                            },
+                            function (responseData) {
+                                document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
+                            }
+                        );
+                    }
+                })  
+            }      
     </script>
 </body>
 
