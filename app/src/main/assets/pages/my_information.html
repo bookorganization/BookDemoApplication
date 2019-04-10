@@ -18,7 +18,7 @@
             <p class="user_info"><label class="userinfo" id="user_id"></label></p>
         </div>
         <div>
-            <a href="login_register.html"><label class="my_untro" id="my_untro">未登录</label></a>
+            <label class="my_untro" id="my_untro" onclick="no_loign()">未登录</label>
         </div>
     </div>
     <div class="info">
@@ -113,8 +113,7 @@
                             document.body.appendChild(s);
                         }();
 
-
-                        if (message==false) {   //未登录
+                        if (message=='false') {   //未登录
                             var my_untro1 = document.getElementById('my_untro')
                             my_untro1.style.display = 'block';
                         } else {//登录
@@ -129,20 +128,45 @@
                 });
             })  
             function cancel_account(){
-                connectWebViewJavascriptBridge(function (bridge) {
+                var r = confirm("是否注销账户")
+                if(r==true){
                     var userid = document.getElementById('user_id')
                     if (userid) {
-                        bridge.callHandler(
-                            'account_cancel', { //接受分类，切换activity
-                                'user_id': JSON.stringify(userid)
-                            },
-                            function (responseData) {
-                                document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
-                            }
-                        );
+                        connectWebViewJavascriptBridge(function (bridge) {
+                            bridge.callHandler(
+                                'account_cancel', { //接受分类，切换activity
+                                    'user_id': JSON.stringify(userid)
+                                },
+                                function (responseData) {
+                                    document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
+                                }
+                            );        
+                        })
+                        var logout = document.getElementById('logout')
+                        var my_untro1 = document.getElementById('my_untro')
+                        my_untro1.style.display = 'block';
+                        logout.style.display = 'none';
+                    }else{
+                        
                     }
+                }else{
+
+                }
+            }    
+            function no_loign(){
+                connectWebViewJavascriptBridge(function (bridge) {
+                    var sendObj = {}
+                    bridge.callHandler(
+                        'no_login_account', { //接受分类，切换activity
+                            'no_loign': JSON.stringify(sendObj)
+                        },
+                        function (responseData) {
+                            document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
+                        }
+                    );
                 })  
-            }      
+            }
+                  
     </script>
 </body>
 
