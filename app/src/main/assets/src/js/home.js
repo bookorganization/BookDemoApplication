@@ -125,7 +125,7 @@ $(document).ready(function () {
         // url:'../src/js/test/booklist.json',
         url:'http://10.112.7.201:8080/booklist',
         context:$('#home-book-list'),
-        async:false,
+//        async:false,
         dataType:'JSON',
         data:{
 
