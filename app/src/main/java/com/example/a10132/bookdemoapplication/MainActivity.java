@@ -142,10 +142,12 @@ public class MainActivity extends AppCompatActivity{
                 String bool = sp.getString("bool","null");
                 //Toast.makeText(MainActivity.this,bool,Toast.LENGTH_LONG).show();
                 String id = "false";
+
                 if (bool.equals("true")){
-                    id = sp.getString("name","null");
+                    id = sp.getString("name","lala");
+                    //Toast.makeText(MainActivity.this, id, Toast.LENGTH_LONG).show();
                 }
-                mWebView.send(id, new CallBackFunction() {//给my传用户信息
+                mWebView.send(id, new CallBackFunction() {//给my传用户id
                     @Override
                     public void onCallBack(String data) { //处理js回传的数据
                         Toast.makeText(MainActivity.this, data, Toast.LENGTH_LONG).show();
@@ -155,11 +157,33 @@ public class MainActivity extends AppCompatActivity{
             }
 
         });
+        mWebView.registerHandler("account_cancel", new BridgeHandler() {//注销登录
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Log.i(TAG, "注销登录 " + data);
+                SharedPreferences.Editor editor=getSharedPreferences("config",MainActivity.this.MODE_PRIVATE).edit();
+                editor.clear();
+                editor.commit();
+                Toast.makeText(MainActivity.this, "注销登录成功", Toast.LENGTH_LONG).show();
+                function.onCallBack("注销登录成功");
+            }
+
+        });
+        mWebView.registerHandler("no_login_account", new BridgeHandler() {//接收信息跳转到登录页
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                function.onCallBack("收到changeClass");
+            }
+
+        });
           initView();
        //hidestatusbar();
 
         //分支合并测试
     }
+
     public static String getTxtFileInfo(Context context) {
         try {
             // 创建FIle对象
