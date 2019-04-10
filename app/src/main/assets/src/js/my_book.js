@@ -1,7 +1,7 @@
     var data = {};
     data.user_id = 1;
     $.ajax({
-        url: "http://10.112.7.201:8080/getcollection",
+        url: "http://47.104.98.184:8080/GreenJujubeApp/getcollection",
         async: true,
         type: "post",
         data: data,
@@ -55,7 +55,7 @@
     }
 
     $.ajax({
-        url: "http://10.112.7.201:8080/gethistory",
+        url: "http://47.104.98.184:8080/GreenJujubeApp/gethistory",
         async: true,
         type: "post",
         data: data,

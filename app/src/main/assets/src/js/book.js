@@ -28,7 +28,7 @@ function bookInit() {
         $.ajax({
             // type: 'post',
             type: 'get',
-            url: 'http://10.112.7.201:8080/bookbyid',
+            url: 'http://47.104.98.184:8080/GreenJujubeApp/bookbyid',
             // url: '../src/js/test/onebook.json',
             // context: $('#home-book-list'),
             async: false,
@@ -158,7 +158,7 @@ function bookInit() {
 
         //异步请求评论    
         $.ajax({
-            url: "http://10.112.7.201:8080/getcommentbyid",
+            url: "http://47.104.98.184:8080/GreenJujubeApp/getcommentbyid",
             async: true,
             type: "post",
             dataType: "json",
@@ -229,7 +229,7 @@ function bookInit() {
                 //发送搜索字
                 $.ajax({
                     type:'post',
-                    url:'http://10.112.7.201:8080/commenttovideo',
+                    url:'http://47.104.98.184:8080/GreenJujubeApp/commenttovideo',
                     async:true,
                     dataType:'JSON',
                     data:sendData,
@@ -322,7 +322,7 @@ function bookInit() {
             }else{
                 console.log('进入收藏')
                 $.ajax({
-                    url: "http://10.112.7.201:8080/collecte",
+                    url: "http://47.104.98.184:8080/GreenJujubeApp/collecte",
                     async: true,
                     type: "post",
                     dataType: "json",

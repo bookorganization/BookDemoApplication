@@ -3,20 +3,20 @@ var videoClassType = $('.hidden-data').attr('tagvalue')
 var searchType = $('.hidden-data').attr('type')
 console.log($('.hidden-data').attr('tagvalue'))
 console.log($('.hidden-data').attr('type'))
-var listurl = 'http://10.112.7.201:8080/booklistbytype'
+var listurl = 'http://47.104.98.184:8080/GreenJujubeApp/booklistbytype'
 var sendData = {}
 if(videoClassType == 'recommend' && searchType == 'other'){    
-    listurl = 'http://10.112.7.201:8080/bookrecommendmore'//获取推荐更多    
+    listurl = 'http://47.104.98.184:8080/GreenJujubeApp/bookrecommendmore'//获取推荐更多    
 }else if(videoClassType == 'recent' && searchType == 'other'){
-    listurl = 'http://10.112.7.201:8080/bookrecentmore'//获取最近更多    
+    listurl = 'http://47.104.98.184:8080/GreenJujubeApp/bookrecentmore'//获取最近更多    
 }else if(searchType == 'type'){
-    listurl = 'http://10.112.7.201:8080/booklistbytype'//根据分类id获取列表
+    listurl = 'http://47.104.98.184:8080/GreenJujubeApp/booklistbytype'//根据分类id获取列表
     sendData.video_type = videoClassType
 }else if(searchType == 'teacher'){
-    listurl = 'http://10.112.7.201:8080/getbooklistbyid'//通过讲师获取列表
+    listurl = 'http://47.104.98.184:8080/GreenJujubeApp/getbooklistbyid'//通过讲师获取列表
     sendData.lecturer_id = videoClassType
 }else if(searchType == 'grade'){
-    listurl = 'http://10.112.7.201:8080/booklistbyyear'//通过讲师获取列表
+    listurl = 'http://47.104.98.184:8080/GreenJujubeApp/booklistbyyear'//通过讲师获取列表
     sendData.video_year = videoClassType
 }
 
@@ -65,7 +65,7 @@ $('.search-zone-input').bind('keydown',function(event){
         //发送搜索字
         $.ajax({
             type:'post',
-            url:'http://10.112.7.201:8080/search',
+            url:'http://47.104.98.184:8080/GreenJujubeApp/search',
             async:true,
             dataType:'JSON',
             data:{

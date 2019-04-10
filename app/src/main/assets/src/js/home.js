@@ -12,7 +12,7 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         // url: '../src/js/test/carousel.json',
-        url: 'http://10.112.7.201:8080/carousel',
+        url: 'http://47.104.98.184:8080/GreenJujubeApp/carousel',
         // context: $('#home-book-list'),
         async: false,
         dataType: 'JSON',
@@ -47,7 +47,7 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         // url:'../src/js/test/bookrecommend.json',
-        url: 'http://10.112.7.201:8080/bookrecommend',
+        url: 'http://47.104.98.184:8080/GreenJujubeApp/bookrecommend',
         // context: $('#home-book-list'),
         async: false,
         dataType: 'JSON',
@@ -123,7 +123,7 @@ $(document).ready(function () {
     $.ajax({
         type:'GET',
         // url:'../src/js/test/booklist.json',
-        url:'http://10.112.7.201:8080/booklist',
+        url:'http://47.104.98.184:8080/GreenJujubeApp/booklist',
         context:$('#home-book-list'),
 //        async:false,
         dataType:'JSON',

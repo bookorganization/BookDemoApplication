@@ -100,7 +100,7 @@ function login_Sms() {
     //几个参数需要注意一下
         type: "post",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: "http://10.112.7.201:8080/sendSms",
+        url: "http://47.104.98.184:8080/GreenJujubeApp/sendSms",
         data: $('#form .user_phone').serialize(),
         success: function (result) {
             console.log(result);//打印服务端返回的数据(调试用)
@@ -118,7 +118,7 @@ function login_bySms() {
     //几个参数需要注意一下
         type: "post",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: "http://10.112.7.201:8080/loginbyverifycode",
+        url: "http://47.104.98.184:8080/GreenJujubeApp/loginbyverifycode",
         data: $('#form').serialize(),
         success: function (result) {
             console.log(result);//打印服务端返回的数据(调试用)
@@ -144,7 +144,7 @@ function login_bypassword() {
     //几个参数需要注意一下
         type: "post",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: "http://10.112.7.201:8080/loginbypassword/",
+        url: "http://47.104.98.184:8080/GreenJujubeApp/loginbypassword/",
         data: $('#form1').serialize(),
         
         success: function (result) {
@@ -171,7 +171,7 @@ function register_Sms() {
     //几个参数需要注意一下
         type: "post",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: "http://10.112.7.201:8080/sendSms",
+        url: "http://47.104.98.184:8080/GreenJujubeApp/sendSms",
         data: $('#form2 .user_phone').serialize(),
         success: function (result) {
             console.log(result);//打印服务端返回的数据(调试用)
@@ -192,7 +192,7 @@ function register_login() {
         type: "post",//方法类型
         async : true,
         dataType: "json",//预期服务器返回的数据类型
-        url: "http://10.112.7.201:8080/register",
+        url: "http://47.104.98.184:8080/GreenJujubeApp/register",
         data: $('#form2').serialize(),
         //data: data,
         success: function (result) {

@@ -90,7 +90,7 @@
             var userid = '1'
             // qrcode
             var qrcode = new QRCode(document.getElementById("qrcode"), {
-                text: "http://10.112.7.201:8080/invite?id="+userid,
+                text: "http://47.104.98.184:8080/GreenJujubeApp/invite?id="+userid,
                 width: 128,
                 height: 128,
                 colorDark : "#000000",
@@ -102,7 +102,7 @@
         //提交代码
         function personal_information_modify(){
             $.ajax({
-                url: "http://10.112.7.201:8080/updateuserinfo",
+                url: "http://47.104.98.184:8080/GreenJujubeApp/updateuserinfo",
                 async: true,
                 type: "post",
                 dataType: "json",
