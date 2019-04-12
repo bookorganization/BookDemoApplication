@@ -125,7 +125,7 @@ function login_bySms() {
 
             JsBridge.callHandler(
                 'password_login', { //接受分类，切换activity
-                    'user_student_id': JSON.stringify(result.user_student_id),
+                    'user': JSON.stringify(result),
                 },
             );
                 alert("SUCCESS");
@@ -149,11 +149,11 @@ function login_bypassword() {
         
         success: function (result) {
             console.log(result)//打印服务端返回的数据(调试用)
-            console.log(JSON.stringify(result.user_student_id))//打印服务端返回的数据(调试用)
+            console.log(JSON.stringify(result))//打印服务端返回的数据(调试用)
             
             JsBridge.callHandler(
             'password_login', { //接受分类，切换activity
-                'user_student_id': JSON.stringify(result.user_student_id),
+                'user': JSON.stringify(result),
             },
         );
             alert("SUCCESS");

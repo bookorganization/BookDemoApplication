@@ -22,7 +22,7 @@
             }else{
                 commentsDom +=
                     '<div class="img_sad_style"> <img class="img_style" src='+data[i].video_cover_url+'>'+
-                    '<div class="split_line"></div>'            
+                    '</div><div class="split_line"></div>'            
             }
         }
 
@@ -40,7 +40,7 @@
             }else{
                 commentsDom +=
                     '<div class="img_sad_style"> <img class="img_style" src='+data[i].video_cover_url+'>'+
-                    '<div class="split_line"></div> </div>'            
+                    '</div><div class="split_line"></div>'            
             }
         }
 
