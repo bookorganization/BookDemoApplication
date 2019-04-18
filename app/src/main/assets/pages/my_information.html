@@ -118,7 +118,8 @@
                             my_untro1.style.display = 'block';
                         } else {//登录
                             var user_name_id = message.user_student_id //获取用户id
-                            
+                            var my_untro1 = document.getElementById('my_untro')
+                            my_untro1.style.display = 'none';
                             var intro = document.getElementById('intro')
                             var logout = document.getElementById('logout')
                             logout.style.display = 'flex';
@@ -142,10 +143,12 @@
                                 }
                             );        
                         })
+                        var intro = document.getElementById('intro')
                         var logout = document.getElementById('logout')
                         var my_untro1 = document.getElementById('my_untro')
                         my_untro1.style.display = 'block';
                         logout.style.display = 'none';
+                        intro.style.display = 'none';
                     }else{
                         
                     }

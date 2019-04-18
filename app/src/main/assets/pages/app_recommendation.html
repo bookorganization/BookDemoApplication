@@ -46,34 +46,42 @@
         </div>
     </div>
     <div class="foot1">
-        <div>
+        <div class="text_center">
             <img src="../src/img/my_photo.png" class="my_photo"> 
         </div>
-        <div>
-            <strong class="app_name">青枣读书</strong>
-            <label class="app_content">来自&nbsp;时光清浅&nbsp;的学习邀请</label>
+        <div class="text_center">
+            <div>
+                <strong class="app_name">青枣读书</strong>
+                <label class="app_content">来自&nbsp;时光清浅&nbsp;的学习邀请</label>
+            </div>
         </div>
-        <div>
+        <div class="text_center">
+            <div>
             <label class="photo_text">使用二维码</label>
             <label class="photo_text">一起轻松读书</label>
+            <div id="qrcode" style="display:none"></div>
+            </div>
         </div>
     </div>
+
     <div class="foot2">
         <img src="../src/img/save_phone.png" class="save">
-        
     </div>
+    <script src="../src/modules/jquery/jquery-3.3.1.min.js"></script>
     <script src="../src/modules/qrcode/qrcode.min.js"></script>
     <script>
         var userid = '1'
-        // qrcode
+
         var qrcode = new QRCode(document.getElementById("qrcode"), {
-        text: "http://47.104.98.184:8080/GreenJujubeApp/invite?id="+userid,
-        width: 128,
-        height: 128,
-        colorDark : "#000000",
-        colorLight : "#ffffff",
-        correctLevel : QRCode.CorrectLevel.L
+            text: "http://10.112.7.201:8080/invite?id="+userid,
+            width: 60,
+            height: 60,
+            colorDark : "#000000",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.L
         });
+        $('#qrcode').show()
+
     </script>
 </body>
 

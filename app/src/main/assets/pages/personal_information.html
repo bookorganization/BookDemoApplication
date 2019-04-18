@@ -15,7 +15,7 @@
             <img class="my_photo" id='user_head'>
             <p class="user_info"><label class="userinfo" id="user_name"></label></p>
             <p class="user_info"><label class="userinfo" id="user_id"></label></p>
-            <div class="share">分享</div>
+            <!-- <div class="share">分享</div> -->
         </div>
     </div>
     <div class="content">
@@ -42,7 +42,7 @@
             <button type="submit" class="modify_submit" onclick="personal_information_modify()"><p class="style1">确定</p></button>
         </div>
     </div>
-    <div id="qrcode" style="display:none"></div>
+    <!-- <div id="qrcode" style="display:none"></div> -->
 
     <script src="../src/modules/jquery/jquery-3.3.1.min.js"></script>
     <script>
@@ -86,19 +86,19 @@
 
     <script src="../src/modules/qrcode/qrcode.min.js"></script>
     <script>
-        $('.share').on('click',function(){
-            var userid = '1'
-            // qrcode
-            var qrcode = new QRCode(document.getElementById("qrcode"), {
-                text: "http://10.112.7.201:8080/invite?id="+userid,
-                width: 128,
-                height: 128,
-                colorDark : "#000000",
-                colorLight : "#ffffff",
-                correctLevel : QRCode.CorrectLevel.L
-            });
-            $('#qrcode').show()
-        })
+        // $('.share').on('click',function(){
+        //     var userid = '1'
+        //     // qrcode
+        //     var qrcode = new QRCode(document.getElementById("qrcode"), {
+        //         text: "http://10.112.7.201:8080/invite?id="+userid,
+        //         width: 128,
+        //         height: 128,
+        //         colorDark : "#000000",
+        //         colorLight : "#ffffff",
+        //         correctLevel : QRCode.CorrectLevel.L
+        //     });
+        //     $('#qrcode').show()
+        // })
         //提交代码
         function personal_information_modify(){
             $.ajax({
