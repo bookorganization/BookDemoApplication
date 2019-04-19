@@ -360,7 +360,7 @@ function bookInit() {
                     dataType: "json",
                     data: {
                         "video_id": currentVideoId,
-                        "user_id": "1"
+                        "user_id": currentUserId
                     },
                     success: function (res) {
                         console.log(res.result);
@@ -438,7 +438,7 @@ function bookInit() {
             
             //获取已读书籍列表
             var data = {};
-            data.user_id = 1;  
+            data.user_id = currentUserId;  
             var insertBooks
             $.ajax({
                 url: "http://10.112.7.201:8080/gethistory",
