@@ -232,3 +232,59 @@
     background: #49D1F9;
     margin: 30px auto;
 }
+
+/*分享*/
+.content-share-wrap{
+    position: fixed;
+    top: 30px;
+    left:calc(50% - 145px);
+    z-index:3000;
+}
+.cs-part1{
+    width: 290px;
+    padding-bottom: 25px;
+    background-color: #fff;
+    border-radius: 25px;
+}
+.cs-part1 img{
+    width: 100%;
+}
+.cs-books{
+    margin: 30px auto 10px;
+    width: 190px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+.cs-book-mark{
+    color: #ED4242;
+}
+.cs-btn{
+    text-align: center;
+    border-radius: 20px;
+    width: 250px;
+    height: 39px;
+    line-height: 39px;
+    color: #fff;
+    letter-spacing: 1px;
+    margin:  10px auto 0;
+    background-color: #FF3404;
+    font-size: 14px;
+    font-weight: bold;
+}
+.cs-part2{
+    width: 320px;
+    margin: 25px auto;
+    margin-left: -15px;
+}
+.cs-part2 img{
+    width: 100%;
+}
+.cs-part3{
+    width: 20px;
+    height: 20px;
+    margin: 25px auto
+}
+.cs-part3 img{
+    width: 100%;
+}

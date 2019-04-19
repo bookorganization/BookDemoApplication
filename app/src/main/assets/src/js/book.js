@@ -1,10 +1,29 @@
 bookInit()
 
 function bookInit() {
-    //获取用户id和图书id
+    //获取
+    //   用户id  图书id  用户类型usertype 会员到期时间expireTime
     var currentUserId = $('#hidden-data').attr('userid')
     var currentVideoId = $('#hidden-data').attr('videoid')
-    var currentUserType = "1"
+    var currentUserType = $('#hidden-data').attr('usertype')
+    var expireTime = $('#hidden-data').attr('expiretime')
+    // var expireTime = 1555643900000
+    // var currentUserType = "1"
+
+    //设置
+    var globalShareInfo = {};
+    var globalShareBasicAddress = "http://10.112.7.201:8080/bookbyid?bookid="
+
+    console.log(Date.parse(new Date()))
+    //弹框提示
+    /*****************/
+    /*               */
+    /*               */
+    /*               */
+    /*****************/
+    var alertInfo = new OrangeUI({})
+
+
     // 切换选项卡
     var bookApp = new Vue({
         el: '#book-part',
@@ -44,6 +63,7 @@ function bookInit() {
                 randerPlayAndDetail(data)
                 audioDataSave(data)
                 // ...
+                saveShareInfo(data)
             },
             error: function (res) {
                 console.log(res)
@@ -77,23 +97,21 @@ function bookInit() {
                     // thumbnails: '../src/img/c.png'
                 },
             });
-            //视频控制
-            var userType = 1
-            if(userType == 0){//普通用户
-                videoControl(".dplayer-video-current", 300)
+            //视频播放控制
+
+            var userType = currentUserType
+            if(userType == '0'){//普通用户
+                videoPlayControl(userType, ".dplayer-video-current", 300)
+            }else if(expireTime >= Date.parse(new Date())){                
+                videoPlayControl(userType, ".dplayer-video-current", 300)
             }
             //视频下载
             videoDownload(userType, videourl)  
         }
 
-        //vip消息提醒
-        function vipAlert(words){
-            console.log(words)
-        }
-
-        // 视频控制
-        function videoControl(className, time){
-            console.log($(className))
+        // 视频播放控制
+        function videoPlayControl(userType, className, time){
+            console.log($(className))            
             
             $(className)[0].duration = 120
             var videoTimer = window.setInterval(stopVideo, 100)
@@ -108,10 +126,14 @@ function bookInit() {
                         console.log('xixi')
                         $(className)[0].pause()
                         //开会员提醒
-                        vipAlert("开通会员可继续观看")
+                        if(userType == '0'){//普通用户
+                            alertInfo.note("开通会员可继续观看")
+                        }else if(expireTime >= Date.parse(new Date())){                
+                            alertInfo.note("会员已到期，请重新续订")
+                        }
+                        
                     }
-                }
-                
+                }                
                 
             }
 
@@ -127,8 +149,10 @@ function bookInit() {
             //点击控制
             $('.dplayer-setting-down').on('click',function(){
                 //用户判断
-                if(userType == 0){//普通用户
-                   vipAlert("开通会员可下载视频")
+                if(userType == '0'){//普通用户
+                    alertInfo.note("开通会员可下载视频")
+                }else if(userType == 1 && expireTime >= Date.parse(new Date())){
+                    alertInfo.note("会员已到期，请重新续订")
                 }else{
                     console.log(videoId)
                     connectWebViewJavascriptBridge(function (bridge) {
@@ -143,6 +167,14 @@ function bookInit() {
                 }
                 
             })
+        }
+
+        //保存分享信息
+        function saveShareInfo(data){
+            globalShareInfo.title = data.name
+            globalShareInfo.url = globalShareBasicAddress+data.video_id
+            globalShareInfo.content = data.introduction
+            globalShareInfo.cover = data.video_cover_url
         }
 
         //存入音频接口需要数据
@@ -252,14 +284,14 @@ function bookInit() {
         
 
         // qrcode
-        var qrcode = new QRCode(document.getElementById("qrcode"), {
-            text: "https://www.baidu.com/",
-            width: 128,
-            height: 128,
-            colorDark: "#000000",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.L
-        });
+        // var qrcode = new QRCode(document.getElementById("qrcode"), {
+        //     text: "https://www.baidu.com/",
+        //     width: 128,
+        //     height: 128,
+        //     colorDark: "#000000",
+        //     colorLight: "#ffffff",
+        //     correctLevel: QRCode.CorrectLevel.L
+        // });
 
         // 音频切换
         $('.bt2').on('click', function () {
@@ -331,13 +363,18 @@ function bookInit() {
                         "user_id": "1"
                     },
                     success: function (res) {
-                        console.log(res);
+                        console.log(res.result);
                         //执行修改显示
+                        var noting = new OrangeUI({})
+                            
                         if(res.result){
                             $('.bt3').html('<img src="../src/img/collection.png" alt="">已收藏')
-                        }else{
+                            noting.note("收藏成功")
+                        }else if(!res.result){
+                            noting.note("取消成功")
                             $('.bt3').html('<img src="../src/img/collection.png" alt="">收藏')
                         }
+                        
                         // ...
                     },
                     error: function (res) {
@@ -350,62 +387,123 @@ function bookInit() {
             }
             
         })
+
+        //视频内容分享
+        // Vue.component('mt-popup', {
+        //     data:function(){
+        //         return {
+        //         }  
+        //     },
+        //     template:"<div>xixi content</div>"
+        // })
+        
+        // var pop = new Vue({
+        //     el:"#xixi",
+        //     data:{
+        //         popupVisible:true
+        //     },
+
+        // })
+        
+        //内容分享
+
+        //弹窗内容
+        function contentshareDomMaker(book) {
+            var dom = '<div class="cs-part1">'+
+            '<div class="cs-img">'+
+                '<img src="../src/img/content-share.png" alt="">'+
+            '</div>'+
+            '<div class="cs-books">'+
+                '<span class="cs-normal">您已花XX分钟轻轻松松看完</span>'+
+                '<span class="cs-book-mark">' + book +'等10本书</span>'+
+                '<span class="cs-normal">邀请朋友一起愉快学习吧</span>'+
+            '</div>'+
+            '<div class="cs-btn">'+
+                '<span>分享好友，一起获得7天VIP</span>'   +
+            '</div>'+
+            '</div>'+
+            '<div class="cs-part2">'+
+                '<div class="cs-img"><img src="../src/img/share-beans.jpg" alt=""></div>'+
+            '</div>'+
+            '<div class="cs-part3">'+
+                '<div class="cs-img"><img src="../src/img/share-close.png" alt=""></div>'+
+            '</div>' 
+            
+            return dom
+
+        }
+        
+        $('.book-tool.bt4').on('click',function(){    
+            
+            
+            //获取已读书籍列表
+            var data = {};
+            data.user_id = 1;  
+            var insertBooks
+            $.ajax({
+                url: "http://10.112.7.201:8080/gethistory",
+                async: true,
+                type: "post",
+                data: data,
+                dataType: "json",
+                success: function (data) {
+                    console.log(data)
+                    insertBooks = shareBooks(data)
+                    var tt = new OrangeUI({
+                        value:'hahah',
+                        contentDOM:contentshareDomMaker(insertBooks),
+                        contentWrapper:'.content-share-wrap'
+                    })
+                    tt.makMask()
+                    tt.makeMaskShow()
+                    $('.content-share-wrap').show()
+        
+                    $('.orangeui-modal').on('click',function(){
+                        tt.makeMaskHide()
+                        $('.content-share-wrap').hide()
+                    })
+                    $('.cs-part1 .cs-btn').on('click',function(){
+                        console.log('分享，向andirod传数据')
+                        var sendData = JSON.stringify(globalShareInfo)
+                        console.log(sendData)
+                        connectWebViewJavascriptBridge(function (bridge) {
+                            bridge.callHandler(
+                                'shareabook', 
+                                sendData,
+                                function (responseData) {
+                                    document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
+                                }
+                            );
+                        })
+                    })
+                    $('.cs-part3').on('click',function(){
+                        console.log('xixi')
+                        tt.makeMaskHide()
+                        $('.content-share-wrap').hide()
+                    })
+
+                },
+                error:function(){
+
+                }
+            });             
+            
+            //渲染书名
+            function shareBooks(list){
+                var dom = ''
+                for(var i=0;i<2;i++){
+                    dom += '《'+list[i].name+'》、'                    
+                }
+                dom+='《'+list[2].name+'》' 
+                return dom;
+            }
+           
+      
+        })
         
 
     }
 }
 
 
-$(document).ready(function () {
-    var currentVideoId = $('#hidden-data').attr('userid')
-    console.log(currentVideoId)
 
-
-    //test
-    var AJAXonebookdata = {
-        "video_id": "1",
-        "video_url": "../src/img/b1.png",
-        "name": "青鸟",
-        "short_introduction": "当孩子想知道幸福是什么，不妨听听《青鸟》的答案。",
-        "video_type": "儿童文学",
-        "number_of_readers": "2309",
-        "time": "2019-03-06",
-        "video_year": "1~3",
-        "introduction": " 《夏洛的网》以儿童的语言讲述关于爱、友谊、生死的故事！《夏洛的网》是一部描写关于友情的童话，在朱克曼家的谷仓里，小猪威尔伯和蜘蛛夏洛建立了最真挚的友谊。《夏洛的网》还是一部探究关于生命的童话，“……生命到底是什么啊？我们出生，我们活上一阵子，我们死去。一只蜘蛛，一生只忙着捕捉和吃苍蝇是毫无意义的，通过帮助你，也许可以提升一点我生命的价值。”童趣盎然，是《夏洛的网》重要的叙事风格。细腻情感化，则传递了本书的语言风格。",
-        "lecturer_name": "精灵哥哥",
-        "lecturer_head_portrait_url": "../src/img/teacher.png",
-        "lecturer_introduction": "以儿童的语言讲述关于爱、友谊、生死的故事！是一部描写关于友情的童话，在朱谷仓里，小尔…",
-        "video_url": "http://media.qingzaodushu.com/%E4%B8%80%E5%B9%B4%E7%BA%A7%E7%9A%84%E5%B0%8F%E8%B1%8C%E8%B1%86.mp4",
-        "audio": "https://s128.xiami.net/687/6687/2104168739/1806616449_1541043641973.mp3?ccode=xiami_web_web&expire=86400&duration=240&psid=5a54e0d90962a30a467863fdaf9297d4&ups_client_netip=2001:da8:215:6a01::ffb1&ups_ts=1553234584&ups_userid=0&utid=/vxME3UB9VsCAbfND4UXs9T7&vid=1806616449&fn=1806616449_1541043641973.mp3&vkey=Ba58a5ea5956a32508407646c0e733677"
-
-    }
-
-    var AJAXcomments2data = [{
-            "username": "浣溪沙",
-            "user_img_url": "../src/img/teacher.png",
-            "user_grade": "一年级",
-            "content": "真好看，推荐大家都来看！",
-            "comment_date": "今天09:55"
-        },
-        {
-            "username": "浣溪沙2",
-            "user_img_url": "../src/img/teacher.png",
-            "user_grade": "一年级",
-            "content": "真好看，推荐大家都来看！",
-            "comment_date": "今天09:55"
-        },
-        {
-            "username": "浣溪沙3",
-            "user_img_url": "../src/img/teacher.png",
-            "user_grade": "一年级",
-            "content": "真好看，推荐大家都来看！",
-            "comment_date": "今天09:55"
-        }
-
-    ]
-
-
-
-
-
-})

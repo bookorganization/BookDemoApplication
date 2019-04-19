@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../src/modules/dplayer/DPlayer.min.css">
     <!-- jquery -->
     <script src="../src/modules/jquery/jquery-3.3.1.min.js"></script>
+    
 </head>
 <body>
     <!-- <a href="music.html" id="listen">听音乐</a>
@@ -133,10 +134,35 @@
             </div>
         </div>
 
-        <div id="hidden-data" userid="1" videoid="2"></div>
+        <div id="hidden-data" userid="1" videoid="2" usertype="1" expiretime=""></div>
 
         <!-- qecode -->
         <div id="qrcode" style="display:none"></div>
+
+        <div class="content-share-wrap">
+            <!-- <div class="cs-part1">
+                <div class="cs-img">
+                    <img src="../src/img/content-share.png" alt="">
+                </div>
+                <div class="cs-books">
+                    <span class="cs-normal">您已花XX分钟轻轻松松看完</span>
+                    <span class="cs-book-mark">《XXXX》 《XXXX》、《XXXX》等10本书</span>
+                    <span class="cs-normal">邀请朋友一起愉快学习吧</span>
+                </div>
+                <div class="cs-btn">
+                    <span>分享好友，一起获得7天VIP</span>   
+                </div>
+            </div>
+            <div class="cs-part2">
+                <div class="cs-img"><img src="../src/img/share-beans.jpg" alt=""></div>
+            </div>
+            <div class="cs-part3">
+                <div class="cs-img"><img src="../src/img/share-close.png" alt=""></div>
+            </div> -->
+        </div>
+
+
+      
         
         
     </div>
@@ -146,12 +172,12 @@
 
 
     <script src="../src/modules/dplayer/DPlayer.min.js"></script>
-    <script src="../src/modules/vue/vue.min.js"></script>
     <script src="../src/modules/qrcode/qrcode.min.js"></script>
     <script src="../src/modules/mobiletouch/touchwipe.js"></script>
+    <script src="../src/modules/vue/vue.min.js"></script>
+    <script src="../src/js/Component.js"></script>
 </body>
-<script defer=true>
-
+<script>        
         function connectWebViewJavascriptBridge(callback) {
             if (window.WebViewJavascriptBridge) {
                 callback(WebViewJavascriptBridge)
@@ -166,22 +192,25 @@
             }
         }
 
-        connectWebViewJavascriptBridge(function(bridge) {
-            bridge.init(function(message, responseCallback) {
-                console.log('JS got a message', message);
-                    var data = {
-                        'Javascript Responds': '测试中文!'
-                    };
-                if (responseCallback) {
-                    console.log('JS responding with', data)
+        // connectWebViewJavascriptBridge(function(bridge) {
+            // bridge.init(function(message, responseCallback) {
+            //     console.log('JS got a message', message);
+            //         var data = {
+            //             'Javascript Responds': '测试中文!'
+            //         };
+            //     if (responseCallback) {
+            //         console.log('JS responding with', data)
 
-                    responseCallback(message);
-                    console.log(message)
-                    console.log(JSON.parse(message))
-                    message = JSON.parse(message)
-                    console.log(message.bookid)
-                    $('#hidden-data').attr('userid',message.bookid)
-                    $('#hidden-data').attr('videoid',message.bookid)
+            //         responseCallback(message);
+            //         console.log(message)
+            //         console.log(JSON.parse(message))
+            //         message = JSON.parse(message)
+            //         console.log(message.bookid)
+            //         $('#hidden-data').attr('userid',message.userid)
+            //         $('#hidden-data').attr('videoid',message.bookid)
+            //         $('#hidden-data').attr('expiretime',message.time)
+            //         $('#hidden-data').attr('usertype',message.userisitvip)
+        
 
                     //引入book.js
                     ~function() {
@@ -190,9 +219,9 @@
                       document.body.appendChild(s);
                     }();
 
-                }
-            });
-        })        
+        //         }
+        //     });
+        // })        
     </script>
 
     <!--<script src="../src/js/Jsbridge.js" defer=true></script>-->

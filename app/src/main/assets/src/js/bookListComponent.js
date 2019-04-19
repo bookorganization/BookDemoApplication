@@ -11,7 +11,7 @@ Vue.component('book-one',{
         // '<div class="book-box"  :href="book.url">'+
             '<div class="book-box-one  clearfix" >'+
                 '<div class="book-box-inl">'+
-                    '<img :src="book.video_cover_url" alt="">'+
+                    '<img v-lazy="book.video_cover_url" alt="" >'+
                 '</div>'+
                 '<div class="book-box-inr">'+
                     '<div class="book-age">{{ book.video_year }}<span>年级</span></div>'+
@@ -54,4 +54,6 @@ Vue.component('book-one',{
     }
 
 })
+//Vue 懒加载
+
 
