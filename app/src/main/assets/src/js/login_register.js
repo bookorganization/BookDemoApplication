@@ -120,15 +120,20 @@ function login_bySms() {
         dataType: "json",//预期服务器返回的数据类型
         url: "http://10.112.7.201:8080/loginbyverifycode",
         data: $('#form').serialize(),
-        success: function (result) {
-            console.log(result);//打印服务端返回的数据(调试用)
-
-            JsBridge.callHandler(
-                'password_login', { //接受分类，切换activity
-                    'user_student_id': JSON.stringify(result.user_student_id),
-                },
-            );
+        success: function (res) {
+            if(res.result){
+                console.log(res)//打印服务端返回的数据(调试用)
+                console.log(JSON.stringify(res))//打印服务端返回的数据(调试用)
+                
+                JsBridge.callHandler(
+                    'password_login', { //接受分类，切换activity
+                        'user': JSON.stringify(res),
+                    },
+                );
                 alert("SUCCESS");
+            }else{
+                alert('验证码不正确')
+            }
         },
         error : function() {
             alert("异常！");
@@ -147,16 +152,20 @@ function login_bypassword() {
         url: "http://10.112.7.201:8080/loginbypassword/",
         data: $('#form1').serialize(),
         
-        success: function (result) {
-            console.log(result)//打印服务端返回的数据(调试用)
-            console.log(JSON.stringify(result.user_student_id))//打印服务端返回的数据(调试用)
-            
-            JsBridge.callHandler(
-            'password_login', { //接受分类，切换activity
-                'user_student_id': JSON.stringify(result.user_student_id),
-            },
-        );
-            alert("SUCCESS");
+        success: function (res) {
+            if(res.result){
+                console.log(res)//打印服务端返回的数据(调试用)
+                console.log(JSON.stringify(res))//打印服务端返回的数据(调试用)
+                
+                JsBridge.callHandler(
+                    'password_login', { //接受分类，切换activity
+                        'user': JSON.stringify(res),
+                    },
+                );
+                alert("SUCCESS");
+            }else{
+                alert('密码不正确')
+            }
         },
 
         error : function() {

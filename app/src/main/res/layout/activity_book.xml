@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".BookActivity">
-    <!--<Button-->
-        <!--android:id="@+id/download_bt"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:text="下载"-->
-        <!--android:layout_height="30dp" />-->
+    <Button
+        android:id="@+id/download_bt"
+        android:layout_width="match_parent"
+        android:text="下载"
+        android:layout_height="30dp" />
     <!--<Button-->
         <!--android:id="@+id/delete_bt"-->
         <!--android:text="删除"-->

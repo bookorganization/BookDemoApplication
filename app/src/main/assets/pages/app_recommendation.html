@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../src/css/app_recommendation.css">
+</head>
+
+<body>
+    <div class="head">
+        <div class="title">
+            <strong class="text_title">免费VIP领取中</strong>
+        </div>
+        <div class='content' id="content_part1">
+            <div class="img_sad_style">
+                <img class="img_style" src="../src/img/1.png">
+            </div>
+            <div class="img_sad_style">
+                <img class="img_style" src="../src/img/2.png">
+            </div>
+            <div class="img_sad_style">
+                <img class="img_style" src="../src/img/3.png">
+            </div>
+            <!-- <div class="split_line"></div> -->
+    
+            <div class="img_sad_style">
+                <img class="img_style" src="../src/img/4.png">
+            </div>
+            <div class="img_sad_style">
+                <img class="img_style" src="../src/img/5.png">
+            </div>
+            <div class="img_sad_style">
+                <img class="img_style" src="../src/img/6.png">
+            </div>
+            <!-- <div class="split_line"></div> -->
+        </div>
+        <div class="recommendation_content">
+            <div>
+                <strong class="recommendation_text">1、1~6年级必读书籍讲析引读；</strong>
+                <strong class="recommendation_text">2、特级教师团队倾心打造；</strong>
+                <strong class="recommendation_text">3、有趣有料，让孩子爱上读书。</strong>
+            </div>
+        </div>
+    </div>
+    <div class="foot1">
+        <div class="text_center">
+            <img src="../src/img/my_photo.png" class="my_photo"> 
+        </div>
+        <div class="text_center">
+            <div>
+                <strong class="app_name">青枣读书</strong>
+                <label class="app_content">来自&nbsp;时光清浅&nbsp;的学习邀请</label>
+            </div>
+        </div>
+        <div class="text_center">
+            <div>
+            <label class="photo_text">使用二维码</label>
+            <label class="photo_text">一起轻松读书</label>
+            <div id="qrcode" style="display:none"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="foot2">
+        <img src="../src/img/save_phone.png" class="save" onclick="screenshot()">
+    </div>
+    <script src="../src/modules/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../src/modules/qrcode/qrcode.min.js"></script>
+    <script>
+        var userid = '1'
+
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: "http://10.112.7.201:8080/invite?id="+userid,
+            width: 60,
+            height: 60,
+            colorDark : "#000000",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.L
+        });
+        $('#qrcode').show()
+
+        function connectWebViewJavascriptBridge(callback) {
+            if (window.WebViewJavascriptBridge) {
+                callback(WebViewJavascriptBridge)
+            } else {
+                document.addEventListener(
+                    'WebViewJavascriptBridgeReady'
+                    , function() {
+                        callback(WebViewJavascriptBridge)
+                    },
+                    false
+                );
+            }
+        }
+        function screenshot(){
+            connectWebViewJavascriptBridge(function (bridge) {
+                var sendObj = {}
+                bridge.callHandler(
+                    'app_recommendation', { //接受分类，切换activity
+                        'content': JSON.stringify(sendObj)
+                    },
+                    function (responseData) {
+                        document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
+                    }
+                );
+            }) 
+
+            connectWebViewJavascriptBridge(function (bridge) {
+                    bridge.init(function (message, responseCallback) {
+                        console.log('JS got a message', message);
+                        var data = {
+                            'Javascript Responds': '测试中文!'
+                        };
+                        if (responseCallback) {
+                            console.log('JS responding with', data)
+                            responseCallback(message);
+                            alert(message)
+
+                        }
+                    });
+                })    
+        }
+    </script>
+</body>
+
+</html>
