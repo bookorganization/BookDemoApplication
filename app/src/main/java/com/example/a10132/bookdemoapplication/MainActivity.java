@@ -144,12 +144,13 @@ public class MainActivity extends AppCompatActivity{
                 String id = "false";
 
                 if (bool.equals("true")){
-                    id = sp.getString("name","lala");
+                    id = sp.getString("userid","lala");
                     //Toast.makeText(MainActivity.this, id, Toast.LENGTH_LONG).show();
                 }
                 mWebView.send(id, new CallBackFunction() {//给my传用户id
                     @Override
                     public void onCallBack(String data) { //处理js回传的数据
+                        Log.e("用户信息",data);
                         Toast.makeText(MainActivity.this, data, Toast.LENGTH_LONG).show();
                     }
                 });

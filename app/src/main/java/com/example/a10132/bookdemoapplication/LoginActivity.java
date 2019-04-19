@@ -15,6 +15,12 @@ import com.github.lzyzsd.jsbridge.BridgeWebView;
 import com.github.lzyzsd.jsbridge.CallBackFunction;
 import com.github.lzyzsd.jsbridge.DefaultHandler;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+//import net.sf.json.JSONObject;
+
+
 public class LoginActivity extends AppCompatActivity {
     private BridgeWebView mWebView;
     private final String TAG = "LoginActivity";
@@ -35,23 +41,38 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void handler(String data, CallBackFunction function) {
                 Log.i(TAG, "handler = submitFromWeb, data from web = " + data);
-
-                saveUserInfo(LoginActivity.this, data);
+                String user;
+                String viptime ;
+                String userid;
+                String userisitvip;
+                try{
+                    JSONObject jsonObj = new JSONObject(data);
+                    user = jsonObj.getString("user");
+                    JSONObject jsonObj2 = new JSONObject(user);
+                    Log.i("jsonObj2",jsonObj2.toString());
+                    viptime = jsonObj2.getString("user_vip_expiration_time");
+                    userid = jsonObj2.getString("user_id");
+                    userisitvip = jsonObj2.getString("user_is_it_vip");
+                    saveUserInfo(LoginActivity.this, userid, viptime, userisitvip);
+                    Toast.makeText(LoginActivity.this, viptime, Toast.LENGTH_SHORT).show();
+                }catch (Exception e){
+                    Log.i("出错误了嘛！！！！！！", e+"");
+                }
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                intent.putExtra("inf",data);
                 startActivity(intent);
-                //Toast.makeText(LoginActivity.this, data, Toast.LENGTH_SHORT).show();
                 function.onCallBack("收到changeClass");
             }
 
         });
     }
-    public void saveUserInfo(Context context, String data) {
+    public void saveUserInfo(Context context, String userid, String viptime, String userisitvip) {
         SharedPreferences sp=getSharedPreferences("config",context.MODE_PRIVATE);
         SharedPreferences.Editor editor=sp.edit();
         //Toast.makeText(LoginActivity.this, data, Toast.LENGTH_SHORT).show();
-        editor.putString("name",data);
+        editor.putString("userid",userid);
+        editor.putString("viptime",viptime);
         editor.putString("bool","true");
+        editor.putString("userisitvip",userisitvip);
         editor.commit();
     }
 }
